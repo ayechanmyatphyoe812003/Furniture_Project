@@ -170,17 +170,26 @@
             </div>
           </div>
           <div class="right-column">
-            <div class="form-group">
-              <label for="releaseDate">Product Released Date:</label>
-              <input type="date" id="releaseDate" name="releaseDate" required />
-            </div>
+
             <div class="form-group">
               <label for="description">Description:</label>
               <textarea id="description" name="description" required></textarea>
             </div>
             <div class="form-group">
               <label for="image" class="upload-container">Upload Product Photo:</label>
-              <input type="file" id="image" name="image" accept="image/*" required />
+              <input type="file" id="image1" name="image" accept="image/*" required />
+            </div>
+            <div class="form-group">
+              <label for="image" class="upload-container">Upload Product Photo:</label>
+              <input type="file" id="image2" name="image" accept="image/*" required />
+            </div>
+            <div class="form-group">
+              <label for="image" class="upload-container">Upload Product Photo:</label>
+              <input type="file" id="image3" name="image" accept="image/*" required />
+            </div>
+            <div class="form-group">
+              <label for="image" class="upload-container">Upload Product Photo:</label>
+              <input type="file" id="image4" name="image" accept="image/*" required />
             </div>
           </div>
         </div>
@@ -192,25 +201,83 @@
   </div>
 
   <script>
-    const imageInput = document.getElementById("image");
-    const photoPreview = document.createElement("div");
-    photoPreview.classList.add("photo-preview");
+    const imageInput1 = document.getElementById("image1");
+    const imageInput2 = document.getElementById("image2");
+    const imageInput3 = document.getElementById("image3");
+    const imageInput4 = document.getElementById("image4");
+    const photoPreview1 = document.createElement("div");
+    photoPreview1.classList.add("photo-preview 1");
+    const photoPreview3 = document.createElement("div");
+    photoPreview3.classList.add("photo-preview 3");
+    const photoPreview2 = document.createElement("div");
+    photoPreview2.classList.add("photo-preview 2");
+    const photoPreview4 = document.createElement("div");
+    photoPreview4.classList.add("photo-preview 4");
     const rightColumn = document.querySelector(".right-column");
-    rightColumn.appendChild(photoPreview);
+    rightColumn.appendChild(photoPreview1);
+    rightColumn.appendChild(photoPreview2);
+    rightColumn.appendChild(photoPreview3);
+    rightColumn.appendChild(photoPreview4);
 
-    imageInput.addEventListener("change", function() {
+    imageInput1.addEventListener("change", function () {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function() {
+        reader.onload = function () {
           const imgElement = document.createElement("img");
           imgElement.src = reader.result;
-          photoPreview.innerHTML = "";
-          photoPreview.appendChild(imgElement);
+          photoPreview1.innerHTML = "";
+          photoPreview1.appendChild(imgElement);
         };
         reader.readAsDataURL(file);
       } else {
-        photoPreview.innerHTML = "";
+        photoPreview1.innerHTML = "";
+      }
+    });
+
+    imageInput2.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          const imgElement = document.createElement("img");
+          imgElement.src = reader.result;
+          photoPreview2.innerHTML = "";
+          photoPreview2.appendChild(imgElement);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        photoPreview2.innerHTML = "";
+      }
+    });
+    imageInput3.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          const imgElement = document.createElement("img");
+          imgElement.src = reader.result;
+          photoPreview3.innerHTML = "";
+          photoPreview3.appendChild(imgElement);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        photoPreview3.innerHTML = "";
+      }
+    });
+    imageInput4.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          const imgElement = document.createElement("img");
+          imgElement.src = reader.result;
+          photoPreview4.innerHTML = "";
+          photoPreview4.appendChild(imgElement);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        photoPreview4.innerHTML = "";
       }
     });
 
