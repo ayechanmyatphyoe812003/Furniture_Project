@@ -1,5 +1,5 @@
 <?php
-require_once "../../database/connect.php";
+require_once "../../../database/connect.php";
 
 $sql = "SELECT * FROM products WHERE PID = $ID";
 $stmt = $pdo->query($sql);
@@ -159,7 +159,7 @@ foreach ($products as $product) {
         ?>
         <div class="create-product-container">
             <h2>Add New Furniture Product</h2>
-            <form action="form_action.php" method="post" enctype="multipart/form-data">
+            <form action="update_form_action.php" method="post" enctype="multipart/form-data">
                 <div class="form-container">
                     <div class="left-column">
                         <div class="form-group">

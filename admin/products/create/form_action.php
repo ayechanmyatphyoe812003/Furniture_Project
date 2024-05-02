@@ -1,5 +1,5 @@
 <?php
-require_once "../../database/connect.php";
+require_once "../../../database/connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
@@ -15,19 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $img4 = isset($_FILES["image4"]["name"]) ? $_FILES["image4"]["name"] : "";
 
 
-    $img1Path = "../../images/";
+    $img1Path = "../../../images/";
     $targetPath1 = $img1Path . $img1;
     $currentPath1 = $_FILES["image1"]["tmp_name"];
 
-    $img2Path = "../../images/";
+    $img2Path = "../../../images/";
     $targetPath2 = $img2Path . $img2;
     $currentPath2 = $_FILES["image2"]["tmp_name"];
 
-    $img3Path = "../../images/";
+    $img3Path = "../../../images/";
     $targetPath3 = $img3Path . $img3;
     $currentPath3 = $_FILES["image3"]["tmp_name"];
 
-    $img4Path = "../../images/";
+    $img4Path = "../../../images/";
     $targetPath4 = $img4Path . $img4;
     $currentPath4 = $_FILES["image4"]["tmp_name"];
 
