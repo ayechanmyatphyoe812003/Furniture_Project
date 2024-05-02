@@ -135,7 +135,7 @@
   <div class="create-product-main-container">
     <?php
     $page = "products";
-    require_once "../dashboard/nav.php";
+    require_once "../../dashboard/nav.php";
     ?>
     <div class="create-product-container">
       <h2>Add New Furniture Product</h2>
@@ -206,24 +206,24 @@
     const imageInput3 = document.getElementById("image3");
     const imageInput4 = document.getElementById("image4");
     const photoPreview1 = document.createElement("div");
-    photoPreview1.classList.add("photo-preview 1");
+    photoPreview1.classList.add("photo-preview1");
     const photoPreview3 = document.createElement("div");
-    photoPreview3.classList.add("photo-preview 3");
+    photoPreview3.classList.add("photo-preview3");
     const photoPreview2 = document.createElement("div");
-    photoPreview2.classList.add("photo-preview 2");
+    photoPreview2.classList.add("photo-preview2");
     const photoPreview4 = document.createElement("div");
-    photoPreview4.classList.add("photo-preview 4");
+    photoPreview4.classList.add("photo-preview4");
     const rightColumn = document.querySelector(".right-column");
     rightColumn.appendChild(photoPreview1);
     rightColumn.appendChild(photoPreview2);
     rightColumn.appendChild(photoPreview3);
     rightColumn.appendChild(photoPreview4);
 
-    imageInput1.addEventListener("change", function () {
+    imageInput1.addEventListener("change", function() {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function () {
+        reader.onload = function() {
           const imgElement = document.createElement("img");
           imgElement.src = reader.result;
           photoPreview1.innerHTML = "";
@@ -235,11 +235,11 @@
       }
     });
 
-    imageInput2.addEventListener("change", function () {
+    imageInput2.addEventListener("change", function() {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function () {
+        reader.onload = function() {
           const imgElement = document.createElement("img");
           imgElement.src = reader.result;
           photoPreview2.innerHTML = "";
@@ -250,11 +250,11 @@
         photoPreview2.innerHTML = "";
       }
     });
-    imageInput3.addEventListener("change", function () {
+    imageInput3.addEventListener("change", function() {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function () {
+        reader.onload = function() {
           const imgElement = document.createElement("img");
           imgElement.src = reader.result;
           photoPreview3.innerHTML = "";
@@ -265,11 +265,11 @@
         photoPreview3.innerHTML = "";
       }
     });
-    imageInput4.addEventListener("change", function () {
+    imageInput4.addEventListener("change", function() {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function () {
+        reader.onload = function() {
           const imgElement = document.createElement("img");
           imgElement.src = reader.result;
           photoPreview4.innerHTML = "";
@@ -281,9 +281,9 @@
       }
     });
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const inputBox = documment.querySelector("img")
-    })
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   const inputBox = documment.querySelector("img")
+    // })
   </script>
 </body>
 

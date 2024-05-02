@@ -107,9 +107,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php
                     foreach ($products as $product) {
-                        $image = "../../images/" . $product['product_img'];
+                        $image = "../../images/" . $product['product_img1'];
 
-                        ?>
+                    ?>
 
                         <tr>
                             <th><?= $product['PID'] ?></th>
@@ -137,13 +137,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </body>
 
 <script>
-    document.getElementById('createProductButton').addEventListener('click', function () {
-        window.location.href = 'create_products.php';
+    document.getElementById('createProductButton').addEventListener('click', function() {
+        console.log("clicked!");
+        window.location.href = 'create/create_products.php';
     });
 
-    document.getElementById('updateButton').addEventListener('click', function () {
-        var productId = <?php echo $ID ?>; // Assuming $ID contains the ID of the product
-        window.location.href = 'update_products.php?ID=' + productId;
+    document.getElementById('updateButton').addEventListener('click', function() {
+        var productId = ; // Assuming $ID contains the ID of the product
+        window.location.href = 'update/update_products.php?ID=' + productId;
     });
 </script>
 
