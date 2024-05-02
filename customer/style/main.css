@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+body {
+  height: 100vh;
+}
+/*-------------------Navigation bar---------------*/
+.navbar {
+  font-family: "Forum", serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+}
+
+.navbar-left {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+}
+.navbar-left a,
+.collection {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+.logo {
+  font-size: 24px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+.navbar-left .dropdown {
+  position: relative;
+}
+.navbar-left .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f8f8f8; /* Light gray background for the dropdown menu */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out; /* Smooth transition */
+  opacity: 0;
+  visibility: hidden;
+}
+.navbar-left .dropdown-content a {
+  display: block;
+  text-align: center;
+  padding: 12px 20px; /* Increase padding for better touch and hover area */
+  text-decoration: none;
+  color: #5f5f5f;
+  border-bottom: 1px solid #e0e0e0; /* Subtle border between items */
+  transition: background-color 0.3s ease-in-out; /* Smooth transition for background color */
+}
+.navbar-left .dropdown-content a:last-child {
+  border-bottom: none; /* No border for the last item */
+}
+.navbar-left .dropdown-content a:hover {
+  color: #000000;
+}
+.navbar-left .dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+.navbar-left .collection {
+  display: flex;
+  align-items: center;
+  background-color: none;
+  color: black; /* White text */
+  padding: 10px 20px; /* Padding */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease-in-out; /* Smooth transition for button hover */
+}
+.navbar-left .collection:hover {
+  color: #000000;
+  font-weight: 800;
+}
+.search-bar {
+  margin: 0 20px;
+  border-bottom: 1px solid;
+  display: flex;
+  align-items: center;
+}
+.search-bar input {
+  width: 80%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+.search-bar input:focus {
+  outline: none;
+}
+.navbar-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 25%;
+}
+.navbar-right a {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+.navbar-right span {
+  font-size: 20px;
+}
+
+/*----------------------Footer----------------------*/
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 1%;
+  padding-top: 2%;
+  border-top: 1px solid;
+}
+.footer-left,
+.footer-mid,
+.footer-right {
+  width: 19%;
+}
+.footer-container .footer-left a {
+  color: #000000;
+  text-decoration: none;
+  margin-right: 9%;
+}
+.footer-container .footer-right {
+  float: left;
+}
+.footer-container .footer-right p {
+  margin-left: 15%;
+  margin-right: 7%;
+  display: inline;
+}
+.footer-container .footer-right .footer-icons {
+  display: inline;
+}
+.footer-container .footer-right a {
+  color: #000000;
+  text-decoration: none;
+  margin-right: 3%;
+}
+.footer-container .footer-mid {
+  text-align: center;
+}
+.footer-container .footer-mid .footer-logo {
+  margin-bottom: 4%;
+}
+.footer-container .footer-mid p {
+  color: #616161;
+}
+.footer-container a:hover {
+  color: gray;
+}
