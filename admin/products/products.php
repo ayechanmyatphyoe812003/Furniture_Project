@@ -1,7 +1,7 @@
 <?php
 require_once "../../database/connect.php";
 
-$sql = "SELECT * FROM product";
+$sql = "SELECT * FROM products";
 $stmt = $pdo->query($sql);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -88,7 +88,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="product-container">
             <div class="top">
                 <h2>Products</h2>
-                <button>Create New Product</button>
+                <button id="createProductButton">Create New Product</button>
             </div>
 
             <table>
@@ -107,12 +107,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php
                     foreach ($products as $product) {
-                    ?>
+                        $image = "../../images/" . $product['product_img'];
+
+                        ?>
 
                         <tr>
                             <th><?= $product['PID'] ?></th>
                             <td>
-                                <img sr$product_itemc="https://via.placeholder.com/50" alt="Customer Photo" class="customer-photo" />
+                                <img src="<?= $image ?>" alt="Product Photo" class="customer-photo" />
                             </td>
 
                             <td><?= $product['Product_Name'] ?></td>
@@ -120,7 +122,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= $product['Product_Category'] ?></td>
                             <td><?= $product['Product_Price'] ?></td>
                             <td><?= $product['Product_Stock'] ?></td>
-                            <td><span class="material-symbols-outlined">
+                            <td><span class="material-symbols-outlined" id="updateButton">
                                     edit_note
                                 </span></td>
                         </tr>
@@ -133,5 +135,16 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </body>
+
+<script>
+    document.getElementById('createProductButton').addEventListener('click', function () {
+        window.location.href = 'create_products.php';
+    });
+
+    document.getElementById('updateButton').addEventListener('click', function () {
+        var productId = <?php echo $ID ?>; // Assuming $ID contains the ID of the product
+        window.location.href = 'update_products.php?ID=' + productId;
+    });
+</script>
 
 </html>
