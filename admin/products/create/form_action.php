@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     if ($name == "") {
     } else {
-        $sql = "INSERT INTO products VALUES ('$name','$brand','$description', '$category', '$price', '$stock','$img1','$img2','$img3','$img4')";
+        $sql = "INSERT INTO products VALUES ('','$name','$brand','$category','$description','$price', '$stock','$img1','$img2','$img3','$img4')";
         try {
             $statement = $pdo->prepare($sql);
             $statement->execute();
@@ -52,5 +52,3 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         }
     }
 }
-
-

@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Add New Furniture Product</title>
+  <link rel="stylesheet" href="../../style.css">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200&family=Quicksand:wght@300..700&display=swap");
 
@@ -81,7 +82,6 @@
 
     .form-group input[type="file"] {
       display: none;
-      /* Hide the file input */
     }
 
     .upload-container {
@@ -176,20 +176,20 @@
               <textarea id="description" name="description" required></textarea>
             </div>
             <div class="form-group">
-              <label for="image" class="upload-container">Upload Product Photo:</label>
-              <input type="file" id="image1" name="image" accept="image/*" required />
+              <label for="image1" class="upload-container">Upload Product Photo:</label>
+              <input type="file" id="image1" name="image1" accept="image/*" required />
             </div>
             <div class="form-group">
-              <label for="image" class="upload-container">Upload Product Photo:</label>
-              <input type="file" id="image2" name="image" accept="image/*" required />
+              <label for="image2" class="upload-container">Upload Product Photo:</label>
+              <input type="file" id="image2" name="image2" accept="image/*" required />
             </div>
             <div class="form-group">
-              <label for="image" class="upload-container">Upload Product Photo:</label>
-              <input type="file" id="image3" name="image" accept="image/*" required />
+              <label for="image3" class="upload-container">Upload Product Photo:</label>
+              <input type="file" id="image3" name="image3" accept="image/*" required />
             </div>
             <div class="form-group">
-              <label for="image" class="upload-container">Upload Product Photo:</label>
-              <input type="file" id="image4" name="image" accept="image/*" required />
+              <label for="image4" class="upload-container">Upload Product Photo:</label>
+              <input type="file" id="image4" name="image4" accept="image/*" required />
             </div>
           </div>
         </div>
@@ -281,9 +281,9 @@
       }
     });
 
-    // document.addEventListener("DOMContentLoaded", () => {
-    //   const inputBox = documment.querySelector("img")
-    // })
+    document.addEventListener("DOMContentLoaded", () => {
+      const inputBox = documment.querySelector("img")
+    })
   </script>
 </body>
 

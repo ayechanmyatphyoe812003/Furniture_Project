@@ -11,7 +11,7 @@
 
 <body>
   <?php
-  require_once "../../navigation/header.php"
+  require_once "../../navigation/header.php";
   ?>
   <div class="about-us-container">
     <!-- Top Image -->

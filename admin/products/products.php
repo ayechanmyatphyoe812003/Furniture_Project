@@ -138,14 +138,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <script>
     document.getElementById('createProductButton').addEventListener('click', function() {
-        console.log("clicked!");
+        // console.log("clicked!");
         window.location.href = 'create/create_products.php';
     });
 
-    document.getElementById('updateButton').addEventListener('click', function() {
-        var productId = ; // Assuming $ID contains the ID of the product
-        window.location.href = 'update/update_products.php?ID=' + productId;
-    });
+    // document.getElementById('updateButton').addEventListener('click', function() {
+    //     var productId =;
+    //     window.location.href = 'update/update_products.php?ID=' + productId;
+    // });
 </script>
 
 </html>

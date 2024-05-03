@@ -43,4 +43,5 @@
                 person
             </span></a>
     </div>
+    </nav>
 </div>
