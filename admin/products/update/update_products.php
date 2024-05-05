@@ -163,6 +163,11 @@ foreach ($products as $product) {
                 <div class="form-container">
                     <div class="left-column">
                         <div class="form-group">
+                            <label for="productID">Product ID:</label>
+                            <input type="text" id="productID" name="productID" value="<?= $ID ?>" readonly="readonly"
+                                required />
+                        </div>
+                        <div class="form-group">
                             <label for="productName">Product Name:</label>
                             <input type="text" id="productName" name="name" value="<?= $name ?>" required />
                         </div>

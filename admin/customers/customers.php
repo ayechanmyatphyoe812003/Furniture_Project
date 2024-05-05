@@ -1,3 +1,11 @@
+<?php
+require_once "../../database/connect.php";
+
+$sql = "SELECT * FROM customer";
+$stmt = $pdo->query($sql);
+$customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +85,7 @@
       <table>
         <thead>
           <tr>
-            <th>Customer Photo</th>
+
             <th>Customer ID</th>
             <th>Customer Name</th>
             <th>Phone Number</th>
@@ -87,30 +95,34 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <img src="https://via.placeholder.com/50" alt="Customer Photo" class="customer-photo" />
-            </td>
-            <td>123456</td>
-            <td>John Doe</td>
-            <td>123-456-7890</td>
-            <td>johndoe@example.com</td>
-            <td>123 Main St, City, Country</td>
-            <td><span class="material-symbols-outlined"> edit_note </span></td>
-          </tr>
-          <tr>
-            <td>
-              <img src="https://via.placeholder.com/50" alt="Customer Photo" class="customer-photo" />
-            </td>
-            <td>654321</td>
-            <td>Jane Smith</td>
-            <td>987-654-3210</td>
-            <td>janesmith@example.com</td>
-            <td>456 Elm St, Town, Country</td>
-            <td><span class="material-symbols-outlined"> edit_note </span>
-            <td>
-          </tr>
-          <!-- Add more rows for additional customers -->
+          <?php
+          foreach ($customers as $customer) {
+
+
+            ?>
+
+            <tr>
+              <th><?= $customer['CID'] ?></th>
+
+
+              <td><?= $customer['customer_Name'] ?></td>
+              <td><?= $customer['customer_Email'] ?></td>
+              <td><?= $customer['customer_Phone'] ?></td>
+              <td><?= $customer['customer_Address'] ?></td>
+              <td><?= $customer['customer_Password'] ?></td>
+              <td>
+                <a href="update/update_customers.php?ID=<?php echo $customer['CID'] ?>
+                            ">
+
+
+                  <span class="material-symbols-outlined" id="updateButton">
+
+                    edit_notes
+                  </span> </a>
+              </td>
+            </tr>
+          <?php } ?>
+
         </tbody>
       </table>
     </div>

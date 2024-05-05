@@ -1,3 +1,12 @@
+<?php
+require_once "../../database/connect.php";
+
+$sql = "SELECT * FROM orders";
+$stmt = $pdo->query($sql);
+$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,16 +96,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <?php
+                    foreach ($orders as $order) {
 
-                        <td>OID001</td>
-                        <td>CID001</td>
-                        <td>PID001</td>
-                        <td>2</td>
-                        <td>200000</td>
-                        <td>Pending</td>
-                        <td><span class="material-symbols-outlined"> edit_note </span></td>
-                    </tr>
+
+                        ?>
+
+                        <tr>
+                            <th><?= $order['OID'] ?></th>
+
+
+                            <td><?= $order['CID'] ?></td>
+                            <td><?= $order['totalAmount'] ?></td>
+                            <td><?= $order['paymentID'] ?></td>
+                            <td><?= $order['orderStatus'] ?></td>
+
+                            <td>
+                                <a href="update/update_orders.php?ID=<?php echo $order['OID'] ?>
+                            ">
+
+
+                                    <span class="material-symbols-outlined" id="updateButton">
+
+                                        edit_notes
+                                    </span> </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
 
                     <!-- Add more rows for additional customers -->
                 </tbody>
