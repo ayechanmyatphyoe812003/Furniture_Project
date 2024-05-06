@@ -88,7 +88,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="product-container">
             <div class="top">
                 <h2>Products</h2>
-                <button id="createProductButton">Create New Product</button>
+                <button id="createProductButton">
+                    <a href="create/create_products.php">Create New Product</a>
+                </button>
             </div>
 
             <table>
@@ -109,7 +111,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($products as $product) {
                         $image = "../../images/" . $product['product_img1'];
 
-                    ?>
+                        ?>
 
                         <tr>
                             <th><?= $product['PID'] ?></th>
@@ -122,13 +124,19 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= $product['Product_Category'] ?></td>
                             <td><?= $product['Product_Price'] ?></td>
                             <td><?= $product['Product_Stock'] ?></td>
-                            <td><span class="material-symbols-outlined" id="updateButton">
-                                    edit_note
-                                </span></td>
+                            <td>
+                                <a href="update/update_products.php?ID=<?php echo $product['PID'] ?>
+                            ">
+
+
+                                    <span class="material-symbols-outlined" id="updateButton">
+
+                                        edit_note
+                                    </span> </a>
+                            </td>
                         </tr>
                     <?php } ?>
-                    <tr>
-                    </tr>
+
 
                 </tbody>
             </table>
@@ -136,16 +144,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </body>
 
-<script>
-    document.getElementById('createProductButton').addEventListener('click', function() {
-        // console.log("clicked!");
-        window.location.href = 'create/create_products.php';
-    });
 
-    // document.getElementById('updateButton').addEventListener('click', function() {
-    //     var productId =;
-    //     window.location.href = 'update/update_products.php?ID=' + productId;
-    // });
-</script>
 
 </html>

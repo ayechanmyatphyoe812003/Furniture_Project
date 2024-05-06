@@ -2,7 +2,7 @@
 require_once "../../../database/connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-
+    $ID = $_POST['productID'];
     $name = $_POST["name"];
     $brand = $_POST["brand"];
     $category = $_POST["category"];
@@ -41,7 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     if ($name == "") {
     } else {
-        $sql = "INSERT INTO products VALUES ('$name','$brand','$description', '$category', '$price', '$stock','$img1','$img2','$img3','$img4')";
+        $sql = "UPDATE products
+SET brand = '$brand', description = '$description', category = '$category', price = '$price', stock = '$stock', img1 = '$img1', img2 = '$img2', img3 = '$img3', img4 = '$img4'
+WHERE productID = '$ID';";
         try {
             $statement = $pdo->prepare($sql);
             $statement->execute();
