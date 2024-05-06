@@ -11,12 +11,14 @@ body {
 }
 /*-------------------Navigation bar---------------*/
 .navbar {
+  width: 100%;
   font-family: "Forum", serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
   font-size: 1.2rem;
+  z-index: 1;
 }
 
 .navbar-left {
@@ -50,7 +52,7 @@ body {
   background-color: #f8f8f8; /* Light gray background for the dropdown menu */
   border-radius: 4px; /* Rounded corners */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
-  z-index: 1;
+  z-index: 999;
   transition: opacity 0.3s ease-in-out; /* Smooth transition */
   opacity: 0;
   visibility: hidden;

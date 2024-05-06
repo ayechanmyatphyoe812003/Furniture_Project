@@ -15,9 +15,15 @@
     ?>
     <div class="products_container">
         <div class="products_head">
-            <h2>Products</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, assumenda, eaque laudantium provident magni animi eum recusandae, est iusto quaerat dignissimos. A</p>
-            <img src="img/sofa_main.png" alt="sofa">
+            <h2><span>|</span>Products</h2>
+            <p>Discover quality craftsmanship, timeless designs, and endless possibilities for transforming your space into a haven of beauty and functionality. </p>
+            <div class="photo-container">
+                <img src="img/img (1).jpg" alt="image1">
+                <img src="img/img (2).jpg" alt="image1">
+                <img src="img/img (4).jpg" alt="image1">
+                <img src="img/img (3).jpg" alt="image1">
+            </div>
+
         </div>
 
         <div class="products_bottom">
@@ -77,11 +83,20 @@
                 <div class="sorting">
                     <h5>Sorted By</h5>
                     <div class="dropdown">
-                        <button class="dropbtn">none</button>
+                        <button class="dropbtn">select<span class="material-symbols-outlined">
+                                expand_more
+                            </span>
+                        </button>
+
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <a href="#">A to Z</a>
+                            <a href="#">Z to A</a>
+                            <a href="#">Price <span class="material-symbols-outlined">
+                                    south
+                                </span> </a>
+                            <a href="#"> Price <span class="material-symbols-outlined">
+                                    north
+                                </span></a>
                         </div>
                     </div>
                 </div>
