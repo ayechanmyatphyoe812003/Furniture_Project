@@ -16,20 +16,17 @@
     <div class="productDetail-container">
         <div class="detail-top">
             <div class="detail-top-left">
-                <div class="main-photo">
-                    <img src="img/whiteSofa.png" alt="">
+                <div class="producat_image">
+                    <div class="img_thumbnail">
+                        <img src="./img/img (1).jpg" alt="" />
+                        <div class="img_small">
+                            <img src="./img/img (1).jpg" alt="" class="active" />
+                            <img src="./img/img (2).jpg" alt="" />
+                            <img src="./img/img (3).jpg" alt="" />
+                            <img src="./img/img (4).jpg" alt="" />
+                        </div>
+                    </div>
                 </div>
-                <!-- <div class="small-photos">
-                    <div class="small-photo">
-                        <img src="img/whiteSofa2.png" alt="Small Photo 1">
-                    </div>
-                    <div class="small-photo">
-                        <img src="img/whiteSofa3.jpg" alt="Small Photo 2">
-                    </div>
-                    <div class="small-photo">
-                        <img src="img/whiteSofa4.png" alt="Small Photo 3">
-                    </div>
-                </div> -->
             </div>
             <div class="detail-top-right">
                 <div class="right1">
@@ -41,7 +38,7 @@
                     <h4>$ 000.00</h4>
                 </div>
 
-                <form action="">
+                <form action="POST">
                     <div class="right3">
                         <p>Qty: </p>
                         <button type="button">-</button>

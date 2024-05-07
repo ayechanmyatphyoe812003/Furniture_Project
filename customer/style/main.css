@@ -19,6 +19,7 @@ body {
   padding: 10px 20px;
   font-size: 1.2rem;
   z-index: 1;
+  position: relative;
 }
 
 .navbar-left {
@@ -125,6 +126,39 @@ body {
   font-size: 20px;
 }
 
+.nav-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  top: 0;
+  left: -216px;
+  padding: 16px;
+  background-color: aquamarine;
+  transition: left 300ms ease-in-out;
+}
+.material-symbols-outlined.hamburger-icon {
+  display: none;
+}
+
+/* Navbar Active */
+
+.navbar.active .nav-menu {
+  left: 0;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .navbar-left,
+  .profile-icon,
+  .search-bar {
+    display: none;
+  }
+
+  .material-symbols-outlined.hamburger-icon {
+    display: initial;
+  }
+}
 /*----------------------Footer----------------------*/
 .footer-container {
   display: flex;
