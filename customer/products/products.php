@@ -4,6 +4,13 @@ $title = "Products";
 $style = "products.css";
 $script = "script.js";
 
+require_once "../../database/connect.php";
+
+$sql = "SELECT * FROM products";
+$stmt = $pdo->query($sql);
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 
 ?>
@@ -14,7 +21,8 @@ require_once "../navigation/header.php";
 <div class="products_container">
     <div class="products_head">
         <h2><span>|</span>Products</h2>
-        <p>Discover quality craftsmanship, timeless designs, and endless possibilities for transforming your space into a haven of beauty and functionality. </p>
+        <p>Discover quality craftsmanship, timeless designs, and endless possibilities for transforming your space into
+            a haven of beauty and functionality. </p>
         <div class="photo-container">
             <img src="img/img (1).jpg" alt="image1">
             <img src="img/img (2).jpg" alt="image1">
@@ -100,25 +108,32 @@ require_once "../navigation/header.php";
             </div>
 
             <div class="product_cards">
-                <?php foreach (range(1, 8) as $i) : ?>
-                    <a href="./productDetail.php?id=<?= $id ?>" class="card">
+
+                <?php
+                foreach ($products as $product) {
+                    $image = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img1'];
+
+                    ?>
+                    <a href="./productDetail.php?id=<?= $product['ID'] ?>" class="card">
                         <div class="product_brand">
-                            <h3>IKEA</h3>
-                            <p>product category</p>
+                            <h3><?= $product['Product_Brand'] ?></h3>
+                            <p><?= $product['Product_Category'] ?></p>
                         </div>
                         <div class="card_image">
-                            <img src="img/sofa1.png" alt="sofa1">
+                            <img src="<?= $image ?>" alt="sofa1">
                         </div>
                         <div class="product_info">
-                            <p>name</p>
-                            <h3>$0000.00</h3>
+                            <p><?= $product['Product_Name'] ?></p>
+                            <h3><?= $product['Product_Price'] ?></h3>
                         </div>
                     </a>
-                <?php endforeach; ?>
+
+                <?php } ?>
+
             </div>
         </div>
     </div>
 </div>
 
 
-<?php require_once("../navigation/footer.php"); ?>
+<?php require_once ("../navigation/footer.php"); ?>

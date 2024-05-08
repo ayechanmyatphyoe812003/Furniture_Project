@@ -105,11 +105,11 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <th><?= $customer['CID'] ?></th>
 
 
-              <td><?= $customer['customer_Name'] ?></td>
-              <td><?= $customer['customer_Email'] ?></td>
-              <td><?= $customer['customer_Phone'] ?></td>
-              <td><?= $customer['customer_Address'] ?></td>
-              <td><?= $customer['customer_Password'] ?></td>
+              <td><?= $customer['Customer_Name'] ?></td>
+              <td><?= $customer['Customer_Email'] ?></td>
+              <td><?= $customer['Customer_Phone'] ?></td>
+              <td><?= $customer['Customer_Address'] ?></td>
+              <td><?= $customer['Customer_Password'] ?></td>
               <td>
                 <a href="update/update_customers.php?ID=<?php echo $customer['CID'] ?>
                             ">

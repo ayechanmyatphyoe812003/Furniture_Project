@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($name == "") {
     } else {
         $sql = "UPDATE customer
-        SET name = '$name', phone = '$phone', address = '$address', password = '$password'
+        SET Customer_Name = '$name', Customer_Phone = '$phone', Customer_Address = '$address', Customer_Password = '$password'
         WHERE CID = '$ID';
         ";
         try {

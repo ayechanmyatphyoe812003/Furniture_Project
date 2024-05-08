@@ -1,7 +1,7 @@
 <?php
 require_once "../../../database/connect.php";
 
-$sql = "SELECT * FROM orders WHERE OID = $ID";
+$sql = "SELECT * FROM orders WHERE order_id = $ID";
 $stmt = $pdo->query($sql);
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -9,11 +9,11 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($orders as $order) {
     # code...
 
-    $customerID = $order['customerID'];
-    $orderDate = $order['orderDate'];
-    $totalAmount = $order['totalAmount'];
-    $paymentID = $order['paymentID'];
-    $orderStatus = $order['orderStatus'];
+    $customerID = $order['customer_id'];
+    $orderDate = $order['order_date'];
+    $totalAmount = $order['total_amount'];
+    $paymentID = $order['payment_id'];
+    $orderStatus = $order['status'];
 }
 
 ?>

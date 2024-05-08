@@ -109,7 +109,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php
                     foreach ($products as $product) {
-                        $image = "../../images/" . $product['product_img1'];
+                        $image = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img1'];
+
 
                         ?>
 

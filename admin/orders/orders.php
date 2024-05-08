@@ -87,8 +87,9 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tr>
                         <th>Order ID</th>
                         <th>Customer ID</th>
-                        <th>Product ID</th>
-                        <th>Quantity</th>
+
+
+                        <th>Order Date</th>
                         <th>Total Price</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -103,13 +104,14 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         ?>
 
                         <tr>
-                            <th><?= $order['OID'] ?></th>
+                            <th><?= $order['order_id'] ?></th>
 
 
-                            <td><?= $order['CID'] ?></td>
-                            <td><?= $order['totalAmount'] ?></td>
-                            <td><?= $order['paymentID'] ?></td>
-                            <td><?= $order['orderStatus'] ?></td>
+                            <td><?= $order['customer_id'] ?></td>
+                            <td><?= $order['order_date'] ?></td>
+                            <td><?= $order['total_amount'] ?></td>
+                            <td><?= $order['payment_id'] ?></td>
+                            <td><?= $order['status'] ?></td>
 
                             <td>
                                 <a href="update/update_orders.php?ID=<?php echo $order['OID'] ?>

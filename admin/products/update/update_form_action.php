@@ -15,21 +15,30 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $img4 = isset($_FILES["image4"]["name"]) ? $_FILES["image4"]["name"] : "";
 
 
-    $img1Path = "../../../images/";
+
+    $img1Path = "../../../images/$name$brand";
     $targetPath1 = $img1Path . $img1;
     $currentPath1 = $_FILES["image1"]["tmp_name"];
 
-    $img2Path = "../../../images/";
+    $img2Path = "../../../images/$name$brand";
     $targetPath2 = $img2Path . $img2;
     $currentPath2 = $_FILES["image2"]["tmp_name"];
 
-    $img3Path = "../../../images/";
+    $img3Path = "../../../images/$name$brand";
     $targetPath3 = $img3Path . $img3;
     $currentPath3 = $_FILES["image3"]["tmp_name"];
 
-    $img4Path = "../../../images/";
+    $img4Path = "../../../images/$name$brand";
     $targetPath4 = $img4Path . $img4;
     $currentPath4 = $_FILES["image4"]["tmp_name"];
+
+
+    if ($img1 !== "") {
+        move_uploaded_file($currentPath1, $targetPath1);
+        move_uploaded_file($currentPath2, $targetPath2);
+        move_uploaded_file($currentPath3, $targetPath3);
+        move_uploaded_file($currentPath4, $targetPath4);
+    }
 
 
     if ($img1 !== "") {
@@ -42,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($name == "") {
     } else {
         $sql = "UPDATE products
-SET brand = '$brand', description = '$description', category = '$category', price = '$price', stock = '$stock', img1 = '$img1', img2 = '$img2', img3 = '$img3', img4 = '$img4'
-WHERE productID = '$ID';";
+SET brand = '$brand', description = '$description', category = '$category', price = '$price', stock = '$stock', product_img1 = '$img1', product_img2 = '$img2', product_img3 = '$img3', product_img4 = '$img4'
+WHERE  = '$ID';";
         try {
             $statement = $pdo->prepare($sql);
             $statement->execute();
