@@ -15,19 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $img4 = isset($_FILES["image4"]["name"]) ? $_FILES["image4"]["name"] : "";
 
 
-    $img1Path = "../../../images/$name$brand";
+    $img1Path = "../../../images/$name$brand/";
     $targetPath1 = $img1Path . $img1;
     $currentPath1 = $_FILES["image1"]["tmp_name"];
 
-    $img2Path = "../../../images/$name$brand";
+    $img2Path = "../../../images/$name$bran/";
     $targetPath2 = $img2Path . $img2;
     $currentPath2 = $_FILES["image2"]["tmp_name"];
 
-    $img3Path = "../../../images/$name$brand";
+    $img3Path = "../../../images/$name$brand/";
     $targetPath3 = $img3Path . $img3;
     $currentPath3 = $_FILES["image3"]["tmp_name"];
 
-    $img4Path = "../../../images/$name$brand";
+    $img4Path = "../../../images/$name$brand/";
     $targetPath4 = $img4Path . $img4;
     $currentPath4 = $_FILES["image4"]["tmp_name"];
 
