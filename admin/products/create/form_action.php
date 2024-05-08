@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $statement = $pdo->prepare($sql);
             $statement->execute();
             echo "<script>alert('Product Created Successfully');</script>";
-            echo "<script>window.location='../products/products.php'</script>";
+            echo "<script>window.location='../products.php'</script>";
         } catch (PDOException $error) {
             echo $error->getMessage();
         }

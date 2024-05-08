@@ -113,7 +113,7 @@ require_once "../navigation/header.php";
                 foreach ($products as $product) {
                     $image = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img1'];
 
-                    ?>
+                ?>
                     <a href="./productDetail.php?id=<?= $product['ID'] ?>" class="card">
                         <div class="product_brand">
                             <h3><?= $product['Product_Brand'] ?></h3>
@@ -136,4 +136,4 @@ require_once "../navigation/header.php";
 </div>
 
 
-<?php require_once ("../navigation/footer.php"); ?>
+<?php require_once("../navigation/footer.php"); ?>
