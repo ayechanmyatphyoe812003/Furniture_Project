@@ -16,37 +16,21 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 
 
-    $img1Path = "../../../images/$name$brand/";
-    $targetPath1 = $img1Path . $img1;
-    $currentPath1 = $_FILES["image1"]["tmp_name"];
+    if ($img1 !== "" && $img2 !== "" && $img3 !== "" && $img4 !== "") {
+        // Create a folder for the product if it doesn't exist
+        $productFolder = "../../../images/{$name}{$brand}/";
+        if (!file_exists($productFolder)) {
+            mkdir($productFolder, 0777, true);
+        }
 
-    $img2Path = "../../../images/$name$brand/";
-    $targetPath2 = $img2Path . $img2;
-    $currentPath2 = $_FILES["image2"]["tmp_name"];
-
-    $img3Path = "../../../images/$name$brand/";
-    $targetPath3 = $img3Path . $img3;
-    $currentPath3 = $_FILES["image3"]["tmp_name"];
-
-    $img4Path = "../../../images/$name$brand/";
-    $targetPath4 = $img4Path . $img4;
-    $currentPath4 = $_FILES["image4"]["tmp_name"];
-
-
-    if ($img1 !== "") {
-        move_uploaded_file($currentPath1, $targetPath1);
-        move_uploaded_file($currentPath2, $targetPath2);
-        move_uploaded_file($currentPath3, $targetPath3);
-        move_uploaded_file($currentPath4, $targetPath4);
+        // Move each uploaded image to the product folder
+        move_uploaded_file($_FILES["image1"]["tmp_name"], $productFolder . $img1);
+        move_uploaded_file($_FILES["image2"]["tmp_name"], $productFolder . $img2);
+        move_uploaded_file($_FILES["image3"]["tmp_name"], $productFolder . $img3);
+        move_uploaded_file($_FILES["image4"]["tmp_name"], $productFolder . $img4);
     }
 
 
-    if ($img1 !== "") {
-        move_uploaded_file($currentPath1, $targetPath1);
-        move_uploaded_file($currentPath2, $targetPath2);
-        move_uploaded_file($currentPath3, $targetPath3);
-        move_uploaded_file($currentPath4, $targetPath4);
-    }
 
     if ($name == "") {
     } else {
