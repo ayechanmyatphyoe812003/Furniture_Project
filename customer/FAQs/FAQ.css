@@ -1,0 +1,52 @@
+/*----------------------------FAQ------------------------------*/
+.faq-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+.faq-container h1 {
+  color: #000000;
+  margin-bottom: 3%;
+}
+.faq-container span {
+  margin-right: 5%;
+}
+.faq-container .faq-card {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px rgba(138, 138, 138, 0.15),
+    0 2px 2px rgba(138, 138, 138, 0.15), 0 4px 4px rgba(138, 138, 138, 0.15),
+    0 8px 8px rgba(138, 138, 138, 0.15);
+}
+.faq-container .question {
+  margin-top: 0;
+  color: #333;
+}
+.faq-container .answer {
+  color: #000000;
+  padding-top: 3%;
+  line-height: 20px;
+  font-size: 15px;
+}
+/* Media Query for FAQ*/
+@media screen and (max-width: 600px) {
+  .faq-container {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+
+  .faq-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 2%;
+  }
+
+  .faq-container .faq-card {
+    padding: 15px;
+  }
+  .faq-container .answer {
+    font-size: 1rem;
+    line-height: 20px;
+  }
+}

@@ -3,6 +3,9 @@
 $title = "Products";
 $style = "products.css";
 $script = "script.js";
+
+
+
 ?>
 
 <?php
@@ -98,7 +101,7 @@ require_once "../navigation/header.php";
 
             <div class="product_cards">
                 <?php foreach (range(1, 8) as $i) : ?>
-                    <div class="card">
+                    <a href="./productDetail.php?id=<?= $id ?>" class="card">
                         <div class="product_brand">
                             <h3>IKEA</h3>
                             <p>product category</p>
@@ -110,7 +113,7 @@ require_once "../navigation/header.php";
                             <p>name</p>
                             <h3>$0000.00</h3>
                         </div>
-                    </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </div>
