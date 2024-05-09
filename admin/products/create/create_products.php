@@ -1,10 +1,13 @@
+<?php
+require_once "../../../database/connect.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add New Furniture Product</title>
+  <title>Create Product</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200&family=Quicksand:wght@300..700&display=swap");
@@ -19,12 +22,14 @@
     }
 
     .create-product-container h2 {
+      margin-top: 4%;
       margin-left: 20%;
     }
 
     .form-container {
       max-width: 700px;
-      margin: 50px auto;
+      margin-top: 3%;
+      margin-left: 20%;
       background-color: #fff;
       padding: 20px;
       border-radius: 8px;
@@ -38,6 +43,10 @@
     .right-column {
       width: calc(50% - 20px);
       margin-right: 20px;
+    }
+
+    .form-group label {
+      font-size: 1.1rem;
     }
 
     .form-group {
@@ -114,7 +123,8 @@
     }
 
     .form-group input[type="submit"] {
-      margin-left: 880px;
+      margin-top: 3%;
+      margin-left: 800px;
       background-color: #cddfff;
       color: black;
       padding: 10px 20px;
@@ -143,39 +153,6 @@
         <div class="form-container">
           <div class="left-column">
             <div class="form-group">
-              <label for="productName">Product Name:</label>
-              <input type="text" id="productName" name="name" required />
-            </div>
-            <div class="form-group">
-              <label for="productBrand">Product Brand:</label>
-              <input type="text" id="productBrand" name="brand" required />
-            </div>
-            <div class="form-group">
-              <label for="category">Category:</label>
-              <select id="category" name="category" required>
-                <option value="chair">Chair</option>
-                <option value="table">Table</option>
-                <option value="sofa">Sofa</option>
-                <option value="bed">Bed</option>
-                <option value="decor">Decoration</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="price">Price:</label>
-              <input type="number" id="price" name="price" min="0" step="0.01" required />
-            </div>
-            <div class="form-group">
-              <label for="stock">Stock:</label>
-              <input type="number" id="stock" name="stock" min="0" required />
-            </div>
-          </div>
-          <div class="right-column">
-
-            <div class="form-group">
-              <label for="description">Description:</label>
-              <textarea id="description" name="description" required></textarea>
-            </div>
-            <div class="form-group">
               <label for="image1" class="upload-container">Upload Product Photo:</label>
               <input type="file" id="image1" name="image1" accept="image/*" required />
             </div>
@@ -192,12 +169,51 @@
               <input type="file" id="image4" name="image4" accept="image/*" required />
             </div>
           </div>
+          <div class="right-column">
+            <div class="form-group">
+              <label for="productName">Product Name:</label>
+              <input type="text" id="productName" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="productBrand">Product Brand:</label>
+              <input type="text" id="productBrand" name="brand" required />
+            </div>
+            <div class="form-group">
+              <label for="category">Category:</label>
+              <select name="category">
+                <option value="">Select Category</option>
+                <?php
+                // SQL query to fetch all categories
+                $sql = "SELECT * FROM category";
+                $stmt = $pdo->query($sql);
+                $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($categories as $category) {
+                  echo "<option value='{$category['categoryID']}'>{$category['categoryName']}</option>";
+                }
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="price">Price:</label>
+              <input type="number" id="price" name="price" min="0" step="0.01" required />
+            </div>
+            <div class="form-group">
+              <label for="stock">Stock:</label>
+              <input type="number" id="stock" name="stock" min="0" required />
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea id="description" name="description" required></textarea>
+            </div>
+
+          </div>
         </div>
         <div class="form-group">
           <input type="submit" value="Submit" />
         </div>
       </form>
     </div>
+
   </div>
 
   <script>
@@ -213,11 +229,11 @@
     photoPreview2.classList.add("photo-preview2");
     const photoPreview4 = document.createElement("div");
     photoPreview4.classList.add("photo-preview4");
-    const rightColumn = document.querySelector(".right-column");
-    rightColumn.appendChild(photoPreview1);
-    rightColumn.appendChild(photoPreview2);
-    rightColumn.appendChild(photoPreview3);
-    rightColumn.appendChild(photoPreview4);
+    const leftColumn = document.querySelector(".left-column");
+    leftColumn.appendChild(photoPreview1);
+    leftColumn.appendChild(photoPreview2);
+    leftColumn.appendChild(photoPreview3);
+    leftColumn.appendChild(photoPreview4);
 
     imageInput1.addEventListener("change", function() {
       const file = this.files[0];

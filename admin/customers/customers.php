@@ -23,7 +23,6 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
       display: grid;
       width: 96%;
       height: 100vh;
-      margin: 0 auto;
       gap: 1.8rem;
       grid-template-columns: 14rem auto;
     }
@@ -91,6 +90,7 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th>Phone Number</th>
             <th>Email</th>
             <th>Address</th>
+            <th>Password</th>
             <th></th>
           </tr>
         </thead>
@@ -99,10 +99,10 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
           foreach ($customers as $customer) {
 
 
-            ?>
+          ?>
 
             <tr>
-              <th><?= $customer['CID'] ?></th>
+              <th><?= $customer['customerID'] ?></th>
 
 
               <td><?= $customer['Customer_Name'] ?></td>
@@ -111,14 +111,13 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <td><?= $customer['Customer_Address'] ?></td>
               <td><?= $customer['Customer_Password'] ?></td>
               <td>
-                <a href="update/update_customers.php?ID=<?php echo $customer['CID'] ?>
-                            ">
-
-
+                <a href="update/update_customers.php?ID=<?php echo $customer['customerID'] ?>">
                   <span class="material-symbols-outlined" id="updateButton">
-
-                    edit_notes
+                    edit_note
                   </span> </a>
+                <a href="delete_form.php?ID=<?php echo $product['productID'] ?>" class="delete"><span class="material-symbols-outlined">
+                    delete
+                  </span></a>
               </td>
             </tr>
           <?php } ?>

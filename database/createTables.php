@@ -2,7 +2,7 @@
 require_once("connect.php");
 
 $create_customers = "CREATE TABLE IF NOT EXISTS customers(
-    CID INT PRIMARY KEY AUTO_INCREMENT,
+    customerID INT PRIMARY KEY AUTO_INCREMENT,
     Customer_Name VARCHAR (100) NOT NULL,
     Customer_Age INT,
     Customer_Gender VARCHAR (10),
@@ -10,7 +10,7 @@ $create_customers = "CREATE TABLE IF NOT EXISTS customers(
 );";
 
 $create_products =  "CREATE TABLE IF NOT EXISTS products(
-    PID INT PRIMARY KEY AUTO_INCREMENT,
+    productID INT PRIMARY KEY AUTO_INCREMENT,
     Product_Name VARCHAR (200) NOT NULL,
     Product_Brand VARCHAR (100),
     Product_Category VARCHAR (100),

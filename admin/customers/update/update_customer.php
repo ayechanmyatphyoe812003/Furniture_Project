@@ -1,19 +1,18 @@
 <?php
 require_once "../../../database/connect.php";
 
-$sql = "SELECT * FROM customer WHERE CID = $ID";
+$sql = "SELECT * FROM customer WHERE customerID = $ID";
 $stmt = $pdo->query($sql);
 $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 foreach ($customers as $customer) {
-    # code...
 
-    $name = $customer['customer_Name'];
-    $email = $customer['customer_Email'];
-    $phone = $customer['customer_Phone'];
-    $address = $customer['customer_Address'];
-    $password = $customer['Product_Password'];
+    $name = $customer['Customer_Name'];
+    $email = $customer['Customer_Email'];
+    $phone = $customer['Customer_Phone'];
+    $address = $customer['Customer_Address'];
+    $password = $customer['Customer_Password'];
 }
 
 ?>
@@ -164,28 +163,23 @@ foreach ($customers as $customer) {
                     <div class="left-column">
                         <div class="form-group">
                             <label for="customerID"> Customer ID:</label>
-                            <input type="text" id="customerID" name="customerID" value="<?= $ID ?>" required
-                                readonly="readonly" />
+                            <input type="text" id="customerID" name="customerID" value="<?= $ID ?>" required readonly="readonly" />
                         </div>
                         <div class="form-group">
                             <label for="customerName"> Name:</label>
-                            <input type="text" id="customerName" name="name" value="<?= $name ?>" required
-                                readonly="readonly" />
+                            <input type="text" id="customerName" name="name" value="<?= $name ?>" required readonly="readonly" />
                         </div>
                         <div class="form-group">
                             <label for="customerEmail">Email:</label>
-                            <input type="text" id="customerEmail" name="email" value="<?= $email ?>" required
-                                readonly="readonly" />
+                            <input type="text" id="customerEmail" name="email" value="<?= $email ?>" required readonly="readonly" />
                         </div>
                         <div class="form-group">
                             <label for="customerPhone">Phone:</label>
-                            <input type="number" id="customerPhone" name="phone" value="<?= $phone ?>" required
-                                readonly="readonly" />
+                            <input type="number" id="customerPhone" name="phone" value="<?= $phone ?>" required readonly="readonly" />
                         </div>
                         <div class="form-group">
                             <label for="customerAddress">Address:</label>
-                            <input type="text" id="address" name="address" value="<?= $address ?>" readonly="readonly"
-                                required />
+                            <input type="text" id="address" name="address" value="<?= $address ?>" readonly="readonly" required />
                         </div>
                         <div class="form-group">
                             <label for="stock">Password:</label>

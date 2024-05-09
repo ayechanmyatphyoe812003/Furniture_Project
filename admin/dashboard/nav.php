@@ -15,8 +15,7 @@
 <body>
     <aside>
         <div class="top">
-            <img src="../images/logo.png" alt="logo" />
-            <h2>LO <span class="go"> GO </span></h2>
+            <h2>NOVA </span></h2>
         </div>
         <div class="close" id="close-btn">
             <span class="material-symbols-outlined"> close </span>
@@ -50,7 +49,7 @@
                     <h3>Reports</h3>
                 </a>
             </div>
-            <a href="#">
+            <a href="../LogIn/login.php">
                 <span class="material-symbols-outlined"> tune </span>
                 <h3>Log Out</h3>
             </a>

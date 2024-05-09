@@ -1,10 +1,7 @@
 <?php
 
-$title = "Products";
-$style = "products.css";
-$script = "script.js";
-
-
+$title = "Log In";
+$style = "login.css";
 
 ?>
 <?php
@@ -17,14 +14,15 @@ require_once "../../navigation/header.php";
             <h1>Welcome back</h1>
             <p>Please log in to your account.</p>
 
-            <form action="/login" method="POST">
+            <form action="login_form_action.php" method="POST">
                 <div class="input-group">
                     <h3>Email</h3>
-                    <input type="email" name="email" placeholder="" required>
+                    <input type="email" id="email" name="email" required>
+
                 </div>
                 <div class="input-group">
                     <h3>Password</h3>
-                    <input type="password" name="password" placeholder="" required>
+                    <input type="password" id="password" name="password" required>
                 </div>
 
                 <a href="#" class="forgot-password">Forgot password?</a>

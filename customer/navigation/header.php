@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="../style/main.css" />
+    <link rel="stylesheet" href="/Furniture_Project/customer/style/main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?= isset($style) ? $style : "" ?>">
@@ -68,10 +68,10 @@
             <a href="#">Home</a>
             <span>Collection</span>
             <div class="collect">
-                <a href="#">Sofas & Sectionals</a>
-                <a href="#">Bed Frames</a>
-                <a href="#">Mattresses</a>
-                <a href="#">Rugs & Carpets</a>
+                <a href="../products/products.php?category=sofa">Sofas & Sectionals</a>
+                <a href="../products/products.php?category=bedframes">Bed Frames</a>
+                <a href="../products/products.php?category=matteress">Mattresses</a>
+                <a href="../products/products.php?category=rugs">Rugs</a>
             </div>
 
             <a href="#">Log In</a>

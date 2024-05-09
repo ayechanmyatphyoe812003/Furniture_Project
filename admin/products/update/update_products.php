@@ -1,19 +1,28 @@
 <?php
 require_once "../../../database/connect.php";
-
-$sql = "SELECT * FROM products WHERE PID = $ID";
+$productID = $_GET['ID'];
+$sql = "SELECT * FROM products WHERE productID = $productID";
 $stmt = $pdo->query($sql);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 foreach ($products as $product) {
-    # code...
-
     $name = $product['Product_Name'];
     $brand = $product['Product_Brand'];
-    $category = $product['Product_Category'];
+    $categoryID = $product['categoryID'];
+
+    $sql = "SELECT * FROM category WHERE categoryID = $categoryID";
+    $stmt = $pdo->query($sql);
+    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $category = $categories[0]['categoryName'];
+
     $price = $product['Product_Price'];
     $stock = $product['Product_Stock'];
+    $description = $product['Product_description'];
+    $img1 = $product["product_img1"];
+    $img2 = $product["product_img2"];
+    $img3 = $product["product_img3"];
+    $img4 = $product["product_img4"];
 }
 
 ?>
@@ -38,12 +47,14 @@ foreach ($products as $product) {
         }
 
         .create-product-container h2 {
+            margin-top: 4%;
             margin-left: 20%;
         }
 
         .form-container {
             max-width: 700px;
-            margin: 50px auto;
+            margin-top: 3%;
+            margin-left: 20%;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -57,6 +68,10 @@ foreach ($products as $product) {
         .right-column {
             width: calc(50% - 20px);
             margin-right: 20px;
+        }
+
+        .form-group label {
+            font-size: 1.1rem;
         }
 
         .form-group {
@@ -87,7 +102,6 @@ foreach ($products as $product) {
             border-radius: 5px;
             font-size: 16px;
             resize: vertical;
-            /* Allow vertical resizing */
         }
 
         .form-group input[type="date"] {
@@ -101,7 +115,6 @@ foreach ($products as $product) {
 
         .form-group input[type="file"] {
             display: none;
-            /* Hide the file input */
         }
 
         .upload-container {
@@ -134,7 +147,8 @@ foreach ($products as $product) {
         }
 
         .form-group input[type="submit"] {
-            margin-left: 880px;
+            margin-top: 3%;
+            margin-left: 800px;
             background-color: #cddfff;
             color: black;
             padding: 10px 20px;
@@ -155,7 +169,7 @@ foreach ($products as $product) {
     <div class="create-product-main-container">
         <?php
         $page = "products";
-        require_once "../dashboard/nav.php";
+        require_once "../../dashboard/nav.php";
         ?>
         <div class="create-product-container">
             <h2>Add New Furniture Product</h2>
@@ -163,9 +177,26 @@ foreach ($products as $product) {
                 <div class="form-container">
                     <div class="left-column">
                         <div class="form-group">
+                            <label for="image1" class="upload-container">Upload Product Photo:</label>
+                            <input type="file" id="image1" name="image1" value="<?= $img1 ?>" accept="image/*" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="image2" class="upload-container">Upload Product Photo:</label>
+                            <input type="file" id="image2" name="image2" value="<?= $img2 ?>" accept="image/*" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="image3" class="upload-container">Upload Product Photo:</label>
+                            <input type="file" id="image3" name="image3" value="<?= $img3 ?>" accept="image/*" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="image4" class="upload-container">Upload Product Photo:</label>
+                            <input type="file" id="image4" name="image4" value="<?= $img4 ?>" accept="image/*" required />
+                        </div>
+                    </div>
+                    <div class="right-column">
+                        <div class="form-group">
                             <label for="productID">Product ID:</label>
-                            <input type="text" id="productID" name="productID" value="<?= $ID ?>" readonly="readonly"
-                                required />
+                            <input type="text" id="productID" name="productID" value="<?= $productID ?>" readonly="readonly" required />
                         </div>
                         <div class="form-group">
                             <label for="productName">Product Name:</label>
@@ -177,45 +208,32 @@ foreach ($products as $product) {
                         </div>
                         <div class="form-group">
                             <label for="category">Category:</label>
-                            <select id="category" name="category" value="<?= $category ?>" required>
-                                <option value="chair">Chair</option>
-                                <option value="table">Table</option>
-                                <option value="sofa">Sofa</option>
-                                <option value="bed">Bed</option>
-                                <option value="decor">Decoration</option>
+                            <select name="category">
+
+                                <?php
+                                // SQL query to fetch all categories
+                                $sql = "SELECT * FROM category";
+                                $stmt = $pdo->query($sql);
+                                $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                foreach ($categories as $category) {
+                                    $selected = ($category['categoryID'] == $categoryID) ? "selected" : "";
+                                    echo "<option {$selected} value='{$category['categoryID']}'>{$category['categoryName']}</option>";
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="price">Price:</label>
-                            <input type="number" id="price" name="price" value="<?= $price ?>" min="0" step="0.01"
-                                required />
+                            <input type="number" id="price" name="price" value="<?= $price ?>" min="0" step="0.01" required />
                         </div>
                         <div class="form-group">
                             <label for="stock">Stock:</label>
-                            <input type="number" id="stock" name="stock" min="0" value="<?= $stock ?>" required />
+                            <input type="number" id="stock" name="stock" value="<?= $stock ?>" min="0" required />
                         </div>
-                    </div>
-                    <div class="right-column">
-
                         <div class="form-group">
                             <label for="description">Description:</label>
-                            <textarea id="description" name="description" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="image" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image1" name="image" accept="image/*" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="image" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image2" name="image" accept="image/*" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="image" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image3" name="image" accept="image/*" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="image" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image4" name="image" accept="image/*" required />
+                            <textarea id="description" name="description" value="<?= $description ?>" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -224,6 +242,7 @@ foreach ($products as $product) {
                 </div>
             </form>
         </div>
+
     </div>
 
     <script>
@@ -232,24 +251,24 @@ foreach ($products as $product) {
         const imageInput3 = document.getElementById("image3");
         const imageInput4 = document.getElementById("image4");
         const photoPreview1 = document.createElement("div");
-        photoPreview1.classList.add("photo-preview 1");
+        photoPreview1.classList.add("photo-preview1");
         const photoPreview3 = document.createElement("div");
-        photoPreview3.classList.add("photo-preview 3");
+        photoPreview3.classList.add("photo-preview3");
         const photoPreview2 = document.createElement("div");
-        photoPreview2.classList.add("photo-preview 2");
+        photoPreview2.classList.add("photo-preview2");
         const photoPreview4 = document.createElement("div");
-        photoPreview4.classList.add("photo-preview 4");
-        const rightColumn = document.querySelector(".right-column");
-        rightColumn.appendChild(photoPreview1);
-        rightColumn.appendChild(photoPreview2);
-        rightColumn.appendChild(photoPreview3);
-        rightColumn.appendChild(photoPreview4);
+        photoPreview4.classList.add("photo-preview4");
+        const leftColumn = document.querySelector(".left-column");
+        leftColumn.appendChild(photoPreview1);
+        leftColumn.appendChild(photoPreview2);
+        leftColumn.appendChild(photoPreview3);
+        leftColumn.appendChild(photoPreview4);
 
-        imageInput1.addEventListener("change", function () {
+        imageInput1.addEventListener("change", function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function () {
+                reader.onload = function() {
                     const imgElement = document.createElement("img");
                     imgElement.src = reader.result;
                     photoPreview1.innerHTML = "";
@@ -261,11 +280,11 @@ foreach ($products as $product) {
             }
         });
 
-        imageInput2.addEventListener("change", function () {
+        imageInput2.addEventListener("change", function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function () {
+                reader.onload = function() {
                     const imgElement = document.createElement("img");
                     imgElement.src = reader.result;
                     photoPreview2.innerHTML = "";
@@ -276,11 +295,11 @@ foreach ($products as $product) {
                 photoPreview2.innerHTML = "";
             }
         });
-        imageInput3.addEventListener("change", function () {
+        imageInput3.addEventListener("change", function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function () {
+                reader.onload = function() {
                     const imgElement = document.createElement("img");
                     imgElement.src = reader.result;
                     photoPreview3.innerHTML = "";
@@ -291,11 +310,11 @@ foreach ($products as $product) {
                 photoPreview3.innerHTML = "";
             }
         });
-        imageInput4.addEventListener("change", function () {
+        imageInput4.addEventListener("change", function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function () {
+                reader.onload = function() {
                     const imgElement = document.createElement("img");
                     imgElement.src = reader.result;
                     photoPreview4.innerHTML = "";

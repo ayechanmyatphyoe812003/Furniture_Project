@@ -22,7 +22,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             display: grid;
             width: 96%;
             height: 100vh;
-            margin: 0 auto;
             gap: 1.8rem;
             grid-template-columns: 14rem auto;
         }
@@ -45,12 +44,19 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            text-align: center;
         }
 
         th,
         td {
             border-bottom: 1px solid #e0e0e0;
             padding: 10px;
+
+        }
+
+        td {
+            font-size: 0.9rem;
+            font-weight: 450;
         }
 
         th {
@@ -73,8 +79,31 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             cursor: pointer;
         }
 
-        .action-btn:hover {
-            background-color: #0056b3;
+        #updateButton:hover {
+            color: gray;
+        }
+
+        .createProductButton {
+            width: 130px;
+            background-color: white;
+            border: 1px solid black;
+            font-size: 0.9rem;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        .createProductButton:hover {
+            background-color: lightblue;
+        }
+
+        .delete {
+            text-decoration: none;
+            background-color: white;
+            border: none;
+        }
+
+        .delete:hover {
+            color: red;
         }
     </style>
 </head>
@@ -88,7 +117,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="product-container">
             <div class="top">
                 <h2>Products</h2>
-                <button id="createProductButton">
+                <button class="createProductButton">
                     <a href="create/create_products.php">Create New Product</a>
                 </button>
             </div>
@@ -110,30 +139,30 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php
                     foreach ($products as $product) {
                         $image = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img1'];
-
-
-                        ?>
+                        $sql = "SELECT * FROM category WHERE categoryID={$product['categoryID']}";
+                        $stmt = $pdo->query($sql);
+                        $category = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
 
                         <tr>
-                            <th><?= $product['PID'] ?></th>
+                            <th><?= $product['productID'] ?></th>
                             <td>
                                 <img src="<?= $image ?>" alt="Product Photo" class="customer-photo" />
                             </td>
 
                             <td><?= $product['Product_Name'] ?></td>
                             <td><?= $product['Product_Brand'] ?></td>
-                            <td><?= $product['Product_Category'] ?></td>
+                            <td><?= $category[0]['categoryName'] ?></td>
                             <td><?= $product['Product_Price'] ?></td>
                             <td><?= $product['Product_Stock'] ?></td>
                             <td>
-                                <a href="update/update_products.php?ID=<?php echo $product['PID'] ?>
-                            ">
-
-
-                                    <span class="material-symbols-outlined" id="updateButton">
-
+                                <a href="update/update_products.php?ID=<?php echo $product['productID'] ?>">
+                                    <span class=" material-symbols-outlined" id="updateButton">
                                         edit_note
                                     </span> </a>
+                                <a href="delete_form.php?ID=<?php echo $product['productID'] ?>" class="delete"><span class="material-symbols-outlined">
+                                        delete
+                                    </span></a>
                             </td>
                         </tr>
                     <?php } ?>

@@ -23,7 +23,6 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
             display: grid;
             width: 96%;
             height: 100vh;
-            margin: 0 auto;
             gap: 1.8rem;
             grid-template-columns: 14rem auto;
         }
@@ -101,7 +100,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($orders as $order) {
 
 
-                        ?>
+                    ?>
 
                         <tr>
                             <th><?= $order['order_id'] ?></th>

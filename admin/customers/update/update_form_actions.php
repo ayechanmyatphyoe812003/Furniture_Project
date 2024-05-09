@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     } else {
         $sql = "UPDATE customer
         SET Customer_Name = '$name', Customer_Phone = '$phone', Customer_Address = '$address', Customer_Password = '$password'
-        WHERE CID = '$ID';
+        WHERE customerID = '$ID';
         ";
         try {
             $statement = $pdo->prepare($sql);
@@ -26,5 +26,3 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         }
     }
 }
-
-

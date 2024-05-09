@@ -143,6 +143,7 @@ body {
   padding: 16px;
   background-color: rgb(248, 248, 248);
   transition: left 300ms ease-in-out;
+  z-index: 999;
 }
 .nav-menu a {
   text-decoration: none;

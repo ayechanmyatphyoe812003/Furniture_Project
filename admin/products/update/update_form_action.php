@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 
     if ($img1 !== "" && $img2 !== "" && $img3 !== "" && $img4 !== "") {
-        // Create a folder for the product if it doesn't exist
         $productFolder = "../../../images/{$name}{$brand}/";
         if (!file_exists($productFolder)) {
             mkdir($productFolder, 0777, true);
@@ -35,17 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($name == "") {
     } else {
         $sql = "UPDATE products
-SET brand = '$brand', description = '$description', category = '$category', price = '$price', stock = '$stock', product_img1 = '$img1', product_img2 = '$img2', product_img3 = '$img3', product_img4 = '$img4'
-WHERE  = '$ID';";
+SET Product_Name= '$name',Product_Brand = '$brand', categoryID = $category, Product_description = '$description',  Product_Price = '$price', Product_Stock = '$stock', product_img1 = '$img1', product_img2 = '$img2', product_img3 = '$img3', product_img4 = '$img4'
+WHERE productID = '$ID';";
         try {
             $statement = $pdo->prepare($sql);
             $statement->execute();
-            echo "<script>alert('Product Created Successfully');</script>";
-            echo "<script>window.location='../products/products.php'</script>";
+            echo "<script>alert('Product Updated Successfully');</script>";
+            echo "<script>window.location='../products.php'</script>";
         } catch (PDOException $error) {
             echo $error->getMessage();
         }
     }
 }
-
-
