@@ -33,7 +33,7 @@ foreach ($products as $product) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Furniture Product</title>
+    <title>Update Furniture Product</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200&family=Quicksand:wght@300..700&display=swap");
 
@@ -70,6 +70,28 @@ foreach ($products as $product) {
             margin-right: 20px;
         }
 
+        .left-column {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-auto-rows: auto;
+        }
+
+        .form-group:nth-child(1) {
+            grid-row: 2;
+        }
+
+        .form-group:nth-child(2) {
+            grid-row: 4;
+        }
+
+        .form-group:nth-child(3) {
+            grid-row: 6;
+        }
+
+        .form-group:nth-child(4) {
+            grid-row: 8;
+        }
+
         .form-group label {
             font-size: 1.1rem;
         }
@@ -93,6 +115,11 @@ foreach ($products as $product) {
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group input[type="file"] {
+            display: none;
         }
 
         .form-group textarea {
@@ -101,25 +128,14 @@ foreach ($products as $product) {
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            resize: vertical;
+            resize: none;
+            height: 820px;
         }
 
-        .form-group input[type="date"] {
-            width: calc(100% - 22px);
-            /* Adjust width for date input */
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .form-group input[type="file"] {
-            display: none;
-        }
 
         .upload-container {
             display: inline-block;
-            background-color: #cddfff;
+            background-color: lightgray;
             color: black;
             padding: 10px 20px;
             border: none;
@@ -129,8 +145,16 @@ foreach ($products as $product) {
         }
 
         .upload-container:hover {
-            background-color: #22489e;
+            background-color: black;
             color: white;
+        }
+
+        .photo-preview1,
+        .photo-preview2,
+        .photo-preview3,
+        .photo-preview4 {
+            height: 306px;
+            border: 1px dotted black;
         }
 
         .photo-preview {
@@ -149,7 +173,7 @@ foreach ($products as $product) {
         .form-group input[type="submit"] {
             margin-top: 3%;
             margin-left: 800px;
-            background-color: #cddfff;
+            background-color: lightgray;
             color: black;
             padding: 10px 20px;
             border: none;
@@ -159,7 +183,7 @@ foreach ($products as $product) {
         }
 
         .form-group input[type="submit"]:hover {
-            background-color: #22489e;
+            background-color: black;
             color: white;
         }
     </style>
@@ -172,25 +196,26 @@ foreach ($products as $product) {
         require_once "../../dashboard/nav.php";
         ?>
         <div class="create-product-container">
-            <h2>Add New Furniture Product</h2>
+            <h2>Update Furniture Product</h2>
             <form action="update_form_action.php" method="post" enctype="multipart/form-data">
                 <div class="form-container">
                     <div class="left-column">
                         <div class="form-group">
                             <label for="image1" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image1" name="image1" value="<?= $img1 ?>" accept="image/*" required />
+
+                            <input type="file" id="image1" name="image1" accept="image/*" required />
                         </div>
                         <div class="form-group">
                             <label for="image2" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image2" name="image2" value="<?= $img2 ?>" accept="image/*" required />
+                            <input type="file" id="image2" name="image2" accept="image/*" required />
                         </div>
                         <div class="form-group">
                             <label for="image3" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image3" name="image3" value="<?= $img3 ?>" accept="image/*" required />
+                            <input type="file" id="image3" name="image3" accept="image/*" required />
                         </div>
                         <div class="form-group">
                             <label for="image4" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image4" name="image4" value="<?= $img4 ?>" accept="image/*" required />
+                            <input type="file" id="image4" name="image4" accept="image/*" required />
                         </div>
                     </div>
                     <div class="right-column">
@@ -233,7 +258,7 @@ foreach ($products as $product) {
                         </div>
                         <div class="form-group">
                             <label for="description">Description:</label>
-                            <textarea id="description" name="description" value="<?= $description ?>" required></textarea>
+                            <textarea id="description" name="description" required><?php echo "$description" ?></textarea>
                         </div>
                     </div>
                 </div>

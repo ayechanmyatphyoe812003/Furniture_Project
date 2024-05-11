@@ -104,28 +104,25 @@ require_once "../navigation/header.php";
             </div>
 
             <div class="product_cards">
-
                 <?php
                 foreach ($products as $product) {
                     $image = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img1'];
 
                 ?>
-                    <a href="./productDetail.php?id=<?= $product['ID'] ?>" class="card">
+                    <a href="./productDetail.php?id=<?= $product['productID'] ?>" class="card">
                         <div class="product_brand">
                             <h3><?= $product['Product_Brand'] ?></h3>
-                            <p><?= $product['Product_Category'] ?></p>
+                            <p><?= $product['categoryID'] ?></p>
                         </div>
                         <div class="card_image">
                             <img src="<?= $image ?>" alt="sofa1">
                         </div>
                         <div class="product_info">
-                            <p><?= $product['Product_Name'] ?></p>
-                            <h3><?= $product['Product_Price'] ?></h3>
+                            <p class="name"><?= $product['Product_Name'] ?></p>
+                            <h3 class="price">$<?= $product['Product_Price'] ?></h3>
                         </div>
                     </a>
-
                 <?php } ?>
-
             </div>
         </div>
     </div>

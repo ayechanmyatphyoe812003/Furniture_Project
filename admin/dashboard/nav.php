@@ -8,7 +8,7 @@
     <!--linking with icons-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <!--linking with css-->
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="/furniture_project/admin/style.css" />
 </head>
 </head>
 
@@ -24,33 +24,27 @@
         <!--side bar-->
         <div class="sidebar">
             <div class="link-container">
-                <a href="../dashboard/index.php" class="<?= $page == "dashboard" ? "active" : "" ?>">
+                <a href="/Furniture_Project/admin/dashboard/index.php" class="<?= $page == "dashboard" ? "active" : "" ?>">
                     <span class=" material-symbols-outlined"> grid_view </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="../customers/customers.php" class="<?= $page == "customers" ? "active" : "" ?>">
+                <a href="/Furniture_Project/admin/customers/customers.php" class="<?= $page == "customers" ? "active" : "" ?>">
                     <span class=" material-symbols-outlined"> groups </span>
                     <h3>Customers</h3>
                 </a>
-                <a href="../orders/orders.php" class="<?= $page == "orders" ? "active" : "" ?>">
+                <a href="/Furniture_Project/admin/orders/orders.php" class="<?= $page == "orders" ? "active" : "" ?>">
                     <span class="material-symbols-outlined"> receipt_long </span>
                     <h3>Orders</h3>
                 </a>
-                <a href="#" class="<?= $page == "analytics" ? "active" : "" ?>">
-                    <span class="material-symbols-outlined"> monitoring </span>
-                    <h3>Analytics</h3>
-                </a>
-                <a href="../products/products.php" class="<?= $page == "products" ? "active" : "" ?>">
+                <a href="/Furniture_Project/admin/products/products.php" class="<?= $page == "products" ? "active" : "" ?>">
                     <span class="material-symbols-outlined"> shoppingmode </span>
                     <h3>Products</h3>
                 </a>
-                <a href="#" class="<?= $page == "reports" ? "active" : "" ?>">
-                    <span class="material-symbols-outlined"> campaign </span>
-                    <h3>Reports</h3>
-                </a>
             </div>
-            <a href="../LogIn/login.php">
-                <span class="material-symbols-outlined"> tune </span>
+            <a href="/Furniture_Project/admin/LogIn/login.php">
+                <span class="material-symbols-outlined">
+                    logout
+                </span>
                 <h3>Log Out</h3>
             </a>
         </div>

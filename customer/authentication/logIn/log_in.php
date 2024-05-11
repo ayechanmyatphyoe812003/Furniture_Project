@@ -43,6 +43,3 @@ require_once "../../navigation/header.php";
 <?php
 require_once "../../navigation/footer.php";
 ?>
-</body>
-
-</html>

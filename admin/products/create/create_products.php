@@ -45,6 +45,28 @@ require_once "../../../database/connect.php";
       margin-right: 20px;
     }
 
+    .left-column {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: auto;
+    }
+
+    .form-group:nth-child(1) {
+      grid-row: 2;
+    }
+
+    .form-group:nth-child(2) {
+      grid-row: 4;
+    }
+
+    .form-group:nth-child(3) {
+      grid-row: 6;
+    }
+
+    .form-group:nth-child(4) {
+      grid-row: 8;
+    }
+
     .form-group label {
       font-size: 1.1rem;
     }
@@ -68,25 +90,18 @@ require_once "../../../database/connect.php";
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 16px;
+      margin-bottom: 20px;
     }
 
     .form-group textarea {
+      height: 400px;
       width: 93%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 16px;
-      resize: vertical;
+      resize: none;
       /* Allow vertical resizing */
-    }
-
-    .form-group input[type="date"] {
-      width: calc(100% - 22px);
-      /* Adjust width for date input */
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
     }
 
     .form-group input[type="file"] {
@@ -95,7 +110,7 @@ require_once "../../../database/connect.php";
 
     .upload-container {
       display: inline-block;
-      background-color: #cddfff;
+      background-color: lightgray;
       color: black;
       padding: 10px 20px;
       border: none;
@@ -105,13 +120,22 @@ require_once "../../../database/connect.php";
     }
 
     .upload-container:hover {
-      background-color: #22489e;
+      background-color: black;
       color: white;
+    }
+
+    .photo-preview1,
+    .photo-preview2,
+    .photo-preview3,
+    .photo-preview4 {
+      height: 306px;
+      border: 1px dotted black;
     }
 
     .photo-preview {
       width: 100%;
       margin-top: 10px;
+
     }
 
     .photo-preview img {
@@ -125,7 +149,7 @@ require_once "../../../database/connect.php";
     .form-group input[type="submit"] {
       margin-top: 3%;
       margin-left: 800px;
-      background-color: #cddfff;
+      background-color: lightgray;
       color: black;
       padding: 10px 20px;
       border: none;
@@ -135,7 +159,7 @@ require_once "../../../database/connect.php";
     }
 
     .form-group input[type="submit"]:hover {
-      background-color: #22489e;
+      background-color: black;
       color: white;
     }
   </style>

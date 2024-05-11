@@ -52,6 +52,11 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
       background-color: #f1f1f1;
     }
 
+    td {
+      font-size: 0.9rem;
+      font-weight: 450;
+    }
+
     .customer-photo {
       width: 50px;
       height: 50px;
@@ -71,6 +76,16 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     .action-btn:hover {
       background-color: #0056b3;
     }
+
+    .delete {
+      text-decoration: none;
+      background-color: white;
+      border: none;
+    }
+
+    .delete:hover {
+      color: red;
+    }
   </style>
 </head>
 
@@ -89,7 +104,6 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th>Customer Name</th>
             <th>Phone Number</th>
             <th>Email</th>
-            <th>Address</th>
             <th>Password</th>
             <th></th>
           </tr>
@@ -108,14 +122,15 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <td><?= $customer['Customer_Name'] ?></td>
               <td><?= $customer['Customer_Email'] ?></td>
               <td><?= $customer['Customer_Phone'] ?></td>
-              <td><?= $customer['Customer_Address'] ?></td>
               <td><?= $customer['Customer_Password'] ?></td>
               <td>
-                <a href="update/update_customers.php?ID=<?php echo $customer['customerID'] ?>">
-                  <span class="material-symbols-outlined" id="updateButton">
-                    edit_note
-                  </span> </a>
-                <a href="delete_form.php?ID=<?php echo $product['productID'] ?>" class="delete"><span class="material-symbols-outlined">
+                <!-- <a href="update/update_customer.php?ID= -->
+
+                <!-- "> -->
+                <!-- <span class="material-symbols-outlined" id="updateButton">
+                  edit_note
+                </span> </a> -->
+                <a href="delete_form.php?ID=<?php echo $customer['customerID'] ?>" class="delete"><span class="material-symbols-outlined">
                     delete
                   </span></a>
               </td>

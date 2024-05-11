@@ -1,0 +1,73 @@
+/*-----------order history user profile--------------------*/
+.main-profile-content {
+  padding-top: 50px;
+}
+.main-profile-content .order-history-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  max-width: 800px;
+  margin: 0 auto;
+  height: fit-content;
+}
+
+.main-profile-content .order-history-card h1 {
+  margin-bottom: 3%;
+}
+
+.main-profile-content .order-history-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.main-profile-content .order-history-card th,
+.order-history-card td {
+  padding: 10px;
+  text-align: center;
+}
+
+.main-profile-content .order-history-card th {
+  background-color: white;
+}
+
+.order-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.links {
+  margin-left: 34%;
+  margin-bottom: 2%;
+}
+
+.links a {
+  color: black;
+  text-decoration: none;
+  padding-right: 30px;
+}
+
+.links .active {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.links a:hover {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: 0.2s ease-in-out;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total h2 {
+  margin-top: 10px;
+}

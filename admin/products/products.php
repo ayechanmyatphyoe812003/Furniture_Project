@@ -90,10 +90,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             font-size: 0.9rem;
             padding: 5px;
             border-radius: 3px;
+            text-align: center;
+            font-weight: 450;
         }
 
         .createProductButton:hover {
-            background-color: lightblue;
+            background-color: black;
+            color: white;
         }
 
         .delete {
@@ -117,9 +120,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="product-container">
             <div class="top">
                 <h2>Products</h2>
-                <button class="createProductButton">
-                    <a href="create/create_products.php">Create New Product</a>
-                </button>
+                <a href="create/create_products.php" class="createProductButton">Create New Product</a>
             </div>
 
             <table>

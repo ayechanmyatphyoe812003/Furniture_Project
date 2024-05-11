@@ -11,16 +11,17 @@
     <div class="navbar">
         <div class="navbar-left">
             <!-- Home button -->
-            <a href="../landing/landing.php">Home</a>
+            <a href="/Furniture_Project/customer/landing/landing.php">Home</a>
             <!-- Collection dropdown -->
             <div class="dropdown">
-                <a href="#" class="collection">Collection<span class="material-symbols-outlined">
-                        expand_more</a>
+                <div class="collection">Collection<span class="material-symbols-outlined">
+                        expand_more</div>
                 <div class="dropdown-content">
-                    <a href="#">Sofas & Sectionals</a>
-                    <a href="#">Bed Frames</a>
-                    <a href="#">Mattresses</a>
-                    <a href="#">Rugs & Carpets</a>
+                    <a href="../products/products.php">All Products</a>
+                    <a href="../products/products.php?category=sofa">Sofa Sets</a>
+                    <a href="../products/products.php?category=bedframes">Bed Frames</a>
+                    <a href="../products/products.php?category=matteress">Mattresses</a>
+                    <a href="../products/products.php?category=rugs">Rugs</a>
                 </div>
             </div>
 
@@ -30,7 +31,7 @@
             menu
         </span>
         <!-- Logo -->
-        <a href="#" class="logo">
+        <a href="/Furniture_Project/customer/landing/landing.php" class="logo">
             <h1>NO</h1>
             <h1 class="footer-logo">VA.</h1>
         </a>
@@ -45,13 +46,14 @@
                 <input type="text" placeholder="Search... ">
             </div>
             <!-- Shopping cart icon -->
-            <a href="#"><span class="material-symbols-outlined">
+            <a href="/Furniture_Project/customer/shoppingpages/shoppingCart.php"><span class="material-symbols-outlined">
                     shopping_cart
                 </span></a>
             <!-- Profile icon -->
-            <a href="#" class="profile-icon"><span class="material-symbols-outlined">
-                    person
-                </span></a>
+            <div class="dropdown">
+                <a href="/Furniture_Project/customer/user/user.php" class="collection"><span class="material-symbols-outlined">
+                        person</a>
+            </div>
         </div>
 
         <div class="nav-menu">
@@ -68,14 +70,15 @@
             <a href="#">Home</a>
             <span>Collection</span>
             <div class="collect">
-                <a href="../products/products.php?category=sofa">Sofas & Sectionals</a>
+                <a href="../products/products.php">All Products</a>
+                <a href="../products/products.php?category=sofa">Sofa Sets</a>
                 <a href="../products/products.php?category=bedframes">Bed Frames</a>
                 <a href="../products/products.php?category=matteress">Mattresses</a>
                 <a href="../products/products.php?category=rugs">Rugs</a>
             </div>
-
-            <a href="#">Log In</a>
-            <a href="#">Sign Up</a>
+            <a href="/Furniture_Project/customer/authentication/login/log_in.php">Log In</a>
+            <a href="/Furniture_Project/customer/authentication/signUp/sign_up.php">Sign Up</a>
+            <a href="/Furniture_Project/customer/user/user.php">My Profile</a>
 
         </div>
     </div>

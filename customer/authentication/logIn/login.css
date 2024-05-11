@@ -47,6 +47,8 @@
   padding: 10px;
   border: none;
   border-bottom: 1px solid #ccc;
+  font-size: 1rem;
+  font-weight: 450;
 }
 
 .log-in-card button {

@@ -52,6 +52,11 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
             background-color: #f1f1f1;
         }
 
+        td {
+            font-size: 0.9rem;
+            font-weight: 450;
+        }
+
         .customer-photo {
             width: 50px;
             height: 50px;
@@ -71,6 +76,16 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .action-btn:hover {
             background-color: #0056b3;
         }
+
+        .delete {
+            text-decoration: none;
+            background-color: white;
+            border: none;
+        }
+
+        .delete:hover {
+            color: red;
+        }
     </style>
 </head>
 
@@ -86,46 +101,35 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tr>
                         <th>Order ID</th>
                         <th>Customer ID</th>
-
-
+                        <th>Address</th>
                         <th>Order Date</th>
                         <th>Total Price</th>
+                        <th>Payment Method</th>
                         <th>Status</th>
-                        <th>Action</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     foreach ($orders as $order) {
-
-
-                    ?>
-
-                        <tr>
-                            <th><?= $order['order_id'] ?></th>
-
-
-                            <td><?= $order['customer_id'] ?></td>
+                    ?><tr>
+                            <th><?= $order['orderID'] ?></th>
+                            <td><?= $order['customerID'] ?></td>
+                            <td><?= $order['Address'] ?></td>
                             <td><?= $order['order_date'] ?></td>
                             <td><?= $order['total_amount'] ?></td>
-                            <td><?= $order['payment_id'] ?></td>
+                            <td><?= $order['paymentID'] ?></td>
                             <td><?= $order['status'] ?></td>
 
                             <td>
-                                <a href="update/update_orders.php?ID=<?php echo $order['OID'] ?>
-                            ">
-
-
-                                    <span class="material-symbols-outlined" id="updateButton">
-
-                                        edit_notes
+                                <a href="update/update_order.php?ID=<?php echo $order['orderID'] ?>
+                            "><span class="material-symbols-outlined" id="updateButton">edit_note
                                     </span> </a>
+                                <a href="delete_form.php?ID=<?php echo $order['orderID'] ?>" class="delete"><span class="material-symbols-outlined"> delete
+                                    </span></a>
                             </td>
                         </tr>
                     <?php } ?>
-
-                    <!-- Add more rows for additional customers -->
                 </tbody>
             </table>
         </div>

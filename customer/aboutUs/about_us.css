@@ -1,0 +1,276 @@
+/*-------about us page--------------------*/
+.about-us-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.about-us-container .top-image img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.about-us-container .about-us-text {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.about-us-container .about-us-text h2 {
+  font-size: 4rem;
+  color: rgb(0, 0, 0);
+  margin-bottom: 2%;
+}
+
+.about-us-container .about-us-text p {
+  width: 60%;
+  margin-left: 20%;
+  margin-bottom: 7%;
+  font-size: 1.4rem;
+  color: #000000;
+  line-height: 27px;
+}
+.about-us-container .about-us-text span {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.about-us-container .about-us-mid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 4%;
+}
+.about-us-container .about-us-mid .about-us-mid-left {
+  margin-left: 15%;
+  font-size: 1.3rem;
+  margin-right: 4%;
+}
+.about-us-container .about-us-mid .about-us-text1,
+.about-us-container .about-us-mid .about-us-text2 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3%;
+}
+
+.head,
+.text {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3%;
+}
+
+.about-us-text1 span {
+  margin-right: 20px;
+  font-size: 2.3rem;
+  font-weight: 400;
+}
+.about-us-text2 span {
+  margin-left: 20px;
+  font-size: 2.3rem;
+  font-weight: 400;
+}
+
+.about-us-text2 .head {
+  display: flex;
+  justify-content: right;
+}
+.about-us-text2 .text {
+  text-align: right;
+}
+.about-us-text1 .text p {
+  margin-left: 1%;
+}
+
+.head p {
+  font-size: 2.1rem;
+  font-weight: 600;
+}
+
+.about-us-container .about-us-mid .about-us-text1 p,
+.about-us-container .about-us-mid .about-us-text2 p {
+  line-height: 27px;
+}
+.about-us-container .about-us-mid-right img {
+  width: 100%;
+}
+
+.about-us-container .slider-header h2 {
+  text-align: center;
+  margin-bottom: 2%;
+  font-size: 2rem;
+}
+.about-us-container body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f1f4fd;
+}
+
+.about-us-cards {
+  max-width: 1700px;
+  width: 100%;
+}
+
+.about-us-cards .slider-wrapper {
+  position: relative;
+}
+
+.about-us-cards .slider-wrapper .slide-button {
+  position: absolute;
+  top: 50%;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 50px;
+  z-index: 5;
+  color: black;
+  display: flex;
+  cursor: pointer;
+  font-size: 2.2rem;
+  background: #ffffff;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  border: 1px solid black;
+}
+
+.about-us-cards .slider-wrapper .slide-button:hover {
+  background: #000000;
+  color: white;
+}
+
+.about-us-cards .slider-wrapper .slide-button#prev-slide {
+  left: -25px;
+  display: none;
+}
+
+.about-us-cards .slider-wrapper .slide-button#next-slide {
+  right: -25px;
+}
+
+.about-us-cards .slider-wrapper .image-list {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 18px;
+  font-size: 0;
+  list-style: none;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.slider-wrapper .image-list::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-wrapper .image-list .image-item {
+  width: 325px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.about-us-container .slider-scrollbar {
+  height: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.slider-scrollbar .scrollbar-track {
+  background: #ccc;
+  width: 100%;
+  height: 2px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  position: relative;
+}
+
+.slider-scrollbar:hover .scrollbar-track {
+  height: 4px;
+}
+
+.slider-scrollbar .scrollbar-thumb {
+  position: absolute;
+  background: #000;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  height: 100%;
+  cursor: grab;
+  border-radius: inherit;
+}
+
+.slider-scrollbar .scrollbar-thumb:active {
+  cursor: grabbing;
+  height: 8px;
+  top: -2px;
+}
+
+.slider-scrollbar .scrollbar-thumb::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10px;
+  bottom: -10px;
+}
+
+/* ---------------Responsive for About Us page--------------*/
+@media (max-width: 768px) {
+  .about-us-container .top-image img {
+    height: 25%;
+  }
+
+  .about-us-container .about-us-text h2 {
+    font-size: 2.5rem;
+    top: 15%;
+  }
+
+  .about-us-container .about-us-text p {
+    width: 80%;
+    margin-left: 10%;
+    font-size: 1.2rem;
+  }
+
+  .about-us-container .about-us-mid {
+    display: block;
+    width: 90%;
+    margin-bottom: 9%;
+  }
+  .about-us-cards .slider-wrapper .image-list {
+    display: flex;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .about-us-cards .slider-wrapper .image-item {
+    width: 100%;
+  }
+  /* .about-us-cards .slider-wrapper .slide-button,
+  .about-us-container .slider-scrollbar {
+    display: none;
+  } */
+
+  .about-us-text1 span {
+    margin-right: 20px;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  .about-us-text2 span {
+    margin-left: 20px;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  .about-us-text1 .text p {
+    margin-left: 1%;
+  }
+  .head p {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  .text {
+    font-size: 1.1rem;
+  }
+}

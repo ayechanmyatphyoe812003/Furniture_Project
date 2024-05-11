@@ -7,18 +7,22 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $stmt = $pdo->prepare("SELECT * FROM customer WHERE Customer_Email = :email");
 $stmt->execute(['email' => $email]);
-$email = $stmt->fetch(PDO::FETCH_ASSOC);
-$pw = $email['Customer_Password'];
+
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$pw = $user['Customer_Password'];
 empty($_SESSION['customer-user']) ?
     $_SESSION['customer-user'] = [] :
     $_SESSION['customer-user'][$name] = ["pw" => $pw];
 
-if ($email && $password == $pw) {
-    header("Location: ../../landing/landing.php");
+if ($user && password_verify($password, $user['Customer_Password'])) {
+    // Store user ID in session
+    $_SESSION['user_id'] = $user['customerID'];
+    header("Location: ../../user/user.php");
     exit();
 } else {
     echo '<script>
-    alert("Invalid admin name or password.");
+    alert("Invalid name or password.");
     window.location.href = "log_in.php"
     </script>';
 }

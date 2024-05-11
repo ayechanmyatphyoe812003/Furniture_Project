@@ -5,6 +5,7 @@ session_start();
 
 $name = $_POST["admin_name"];
 $password = $_POST["password"];
+
 $stmt = $pdo->prepare("SELECT * FROM admin WHERE adminName = :admin_name");
 $stmt->execute(['admin_name' => $name]);
 $admin = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -13,7 +14,7 @@ empty($_SESSION['admin-user']) ?
     $_SESSION['admin-user'] = [] :
     $_SESSION['admin-user'][$name] = ["pw" => $pw];
 
-if ($admin && $password == $pw) {
+if ($admin && password_verify($password, $pw)) {
     header("Location: ../dashboard/index.php");
     exit();
 } else {

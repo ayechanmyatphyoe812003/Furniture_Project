@@ -10,18 +10,18 @@ require_once "../navigation/header.php";
 ?>
 <div class="shopping-cart-container">
   <h2 class="shopping-title"><span>|</span>Shopping Cart</h2>
-  <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])):
+  <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) :
+    $subtotal = 0;
     foreach ($_SESSION['cart'] as $productId => $product) {
-      $subtotal += ($product['Product_Price'] ?? 0) * ($product['qty'] ?? 0);
+      $subtotal += ($product['productPrice'] ?? 0) * ($product['qty'] ?? 0);
     }
-
     $shippingFee = 50.00; // Assuming a fixed shipping fee
     $totalPrice = $subtotal + $shippingFee;
 
     // Calculate the estimated delivery date
     $deliveryDate = new DateTime();
     $deliveryDate->add(new DateInterval('P7D')); // Add 7 days
-    ?>
+  ?>
 
 
     <div class="shopping-cart-boxes">
@@ -34,13 +34,15 @@ require_once "../navigation/header.php";
               <th>Quantity</th>
               <th>Price</th>
             </tr>
-            <?php foreach ($_SESSION['cart'] as $productId => $product): ?>
+            <?php foreach ($_SESSION['cart'] as $productId => $product) : ?>
               <tr>
                 <td>
                   <img src="<?= $product['productImg'] ?? '' ?>" alt="Furniture Image 1" width="50" />
-                <td><?= $product['productName'] ?? 'Unknown' ?></td>
                 </td>
-                <td>$<?= (int) ($product['Product_Price'] ?? 0) * (int) ($product['qty'] ?? 0) ?></td>
+                <td><?= $product['productName'] ?? 'Unknown' ?></td>
+                <td><?= $product['qty'] ?? '0' ?></td>
+
+                <td>$<?= (int) ($product['productPrice'] ?? 0) * (int) ($product['qty'] ?? 0) ?></td>
 
 
               </tr>

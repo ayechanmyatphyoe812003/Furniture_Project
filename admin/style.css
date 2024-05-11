@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200&family=Quicksand:wght@300..700&display=swap");
 :root {
-  --color-primary: #7380ec;
+  --color-primary: #000000;
   --color-logo: #ff7782;
   --color-success: #41f1b6;
   --color-warning: #ffbb55;
   --color-white: #fff;
-  --color-info-dark: #7d8da1;
+  --color-info-dark: #3f3f3f;
   --color-info-light: #dceleb;
   --color-dark: #000000;
   --color-light: rgb(237, 237, 237);
@@ -31,6 +31,7 @@
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
+  font-family: inherit;
 }
 body {
   font-weight: 100;
@@ -119,16 +120,12 @@ aside {
 }
 
 aside .top {
-  background-color: white;
+  border-bottom: 1px solid black;
   display: flex;
   align-items: center;
   gap: 0.6rem;
   padding-left: 2rem;
-  height: 10%;
-}
-aside .top img {
-  width: 3rem;
-  height: 3rem;
+  height: 50px;
 }
 
 aside .close {
@@ -141,7 +138,6 @@ aside .sidebar {
   /* height: 86vh;
   position: relative;
   top: 3rem; */
-  justify-content: space-between;
   height: 90%;
 }
 
@@ -157,6 +153,7 @@ aside .sidebar a {
   position: relative;
   height: 3.7rem;
   transition: all 300ms ease;
+  font-size: 1rem;
 }
 
 aside .sidebar a span {
@@ -193,19 +190,7 @@ aside .sidebar a:hover span {
 /*============= MAIN ========================*/
 main {
   margin-top: 1.4rem;
-}
-
-main .date {
-  display: inline-block;
-  background: var(--color-light);
-  border-radius: var(--border-radius-1);
-  margin-top: 1rem;
-  padding: 0.5rem 1.6rem;
-}
-
-main .date input[type="date"] {
-  background: transparent;
-  color: var(--color-dark);
+  margin-left: 5%;
 }
 
 main .insights {

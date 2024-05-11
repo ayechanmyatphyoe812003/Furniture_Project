@@ -1,7 +1,7 @@
 <?php
 require_once "../../../database/connect.php";
-
-$sql = "SELECT * FROM customer WHERE customerID = $ID";
+$customerID = $_GET['ID'];
+$sql = "SELECT * FROM customer WHERE customerID = $customerID";
 $stmt = $pdo->query($sql);
 $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -153,8 +153,8 @@ foreach ($customers as $customer) {
 <body>
     <div class="create-product-main-container">
         <?php
-        $page = "products";
-        require_once "../dashboard/nav.php";
+        $page = "customers";
+        require_once "../../dashboard/nav.php";
         ?>
         <div class="create-product-container">
             <h2>Update Customer</h2>
@@ -163,7 +163,7 @@ foreach ($customers as $customer) {
                     <div class="left-column">
                         <div class="form-group">
                             <label for="customerID"> Customer ID:</label>
-                            <input type="text" id="customerID" name="customerID" value="<?= $ID ?>" required readonly="readonly" />
+                            <input type="text" id="customerID" name="customerID" value="<?= $customerID ?>" required readonly="readonly" />
                         </div>
                         <div class="form-group">
                             <label for="customerName"> Name:</label>
@@ -179,7 +179,7 @@ foreach ($customers as $customer) {
                         </div>
                         <div class="form-group">
                             <label for="customerAddress">Address:</label>
-                            <input type="text" id="address" name="address" value="<?= $address ?>" readonly="readonly" required />
+                            <input type="text" id="address" name="address" value="<?= $address ?>" readonly="readonly" required readonly="readonly" />
                         </div>
                         <div class="form-group">
                             <label for="stock">Password:</label>
