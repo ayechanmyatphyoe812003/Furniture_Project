@@ -41,8 +41,7 @@ require_once "../navigation/header.php";
 ?>
 <div class="productDetail-container">
 
-    <input type="hidden" id="productId" name="product_id" value="<?= $productId ?>">
-    <input type="hidden" id="quantity" name="quantity" value="1">
+
     <div class="detail-top">
         <div class="detail-top-left">
             <div class="slider-wrapper">
@@ -98,7 +97,7 @@ require_once "../navigation/header.php";
             <h3>Related Products</h3>
         </div>
         <div class="product_cards">
-            <?php foreach (range(1, 4) as $i): ?>
+            <?php foreach (range(1, 4) as $i) : ?>
                 <div class="card">
                     <div class="product_brand">
                         <h3><?= $productBrand ?></h3>
@@ -118,7 +117,7 @@ require_once "../navigation/header.php";
 </div>
 </div>
 
-<?php require_once ("../navigation/footer.php"); ?>
+<?php require_once("../navigation/footer.php"); ?>
 
 
 
@@ -143,7 +142,7 @@ require_once "../navigation/header.php";
     });
 
     addToCartBtn.addEventListener('click', () => {
-        // Set the quantity value before submitting the form
+        console.log(quantityInput.value);
         document.getElementById('quantity').value = quantityInput.value;
         // Submit the form
         addToCartForm.submit();
