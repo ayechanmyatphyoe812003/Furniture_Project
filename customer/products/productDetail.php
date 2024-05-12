@@ -74,17 +74,20 @@ require_once "../navigation/header.php";
                 <p><?= $productDescription ?></p>
                 <h4>$ <?= $productPrice ?></h4>
             </div>
+            <form id="addToCartForm" action="cart_function.php" method="post">
+                <!-- Hidden input fields for product_id and quantity -->
+                <input type="hidden" id="productId" name="product_id" value="<?= $productId ?>">
+                <input type="hidden" id="quantity" name="quantity" value="1">
 
-            <form action="cart_function.php" method="post" id="addToCartForm">
                 <div class="right3">
                     <p>Qty: </p>
-                    <button type="button">-</button>
-                    <input type="number" value="1" readonly>
-                    <button type="button">+</button>
+                    <button type="button" id="decrementQty">-</button>
+                    <input type="number" id="quantityDisplay" value="1" readonly>
+                    <button type="button" id="incrementQty">+</button>
                 </div>
                 <div class="right4">
-                    <button class="btn1">Add to Cart</button>
-                    <button class="btn2">Buy Now</button>
+                    <button type="button" id="addToCartBtn">Add to Cart</button>
+                    <button type="submit" class="btn2">Buy Now</button>
                 </div>
             </form>
 
@@ -95,7 +98,7 @@ require_once "../navigation/header.php";
             <h3>Related Products</h3>
         </div>
         <div class="product_cards">
-            <?php foreach (range(1, 4) as $i) : ?>
+            <?php foreach (range(1, 4) as $i): ?>
                 <div class="card">
                     <div class="product_brand">
                         <h3><?= $productBrand ?></h3>
@@ -114,4 +117,35 @@ require_once "../navigation/header.php";
     </div>
 </div>
 </div>
-<?php require_once("../navigation/footer.php"); ?>
+
+<?php require_once ("../navigation/footer.php"); ?>
+
+
+
+<script>
+    const incrementBtn = document.getElementById('incrementQty');
+    const decrementBtn = document.getElementById('decrementQty');
+    const quantityInput = document.getElementById('quantity');
+    const quantityDisplay = document.getElementById('quantityDisplay');
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    const addToCartForm = document.getElementById('addToCartForm');
+
+    incrementBtn.addEventListener('click', () => {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+        quantityDisplay.value = quantityInput.value;
+    });
+
+    decrementBtn.addEventListener('click', () => {
+        if (parseInt(quantityInput.value) > 1) {
+            quantityInput.value = parseInt(quantityInput.value) - 1;
+            quantityDisplay.value = quantityInput.value;
+        }
+    });
+
+    addToCartBtn.addEventListener('click', () => {
+        // Set the quantity value before submitting the form
+        document.getElementById('quantity').value = quantityInput.value;
+        // Submit the form
+        addToCartForm.submit();
+    });
+</script>
