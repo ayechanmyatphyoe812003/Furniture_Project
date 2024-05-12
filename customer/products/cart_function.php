@@ -9,7 +9,7 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
 
 
     // Fetch product details
-    $sql = "SELECT p.*,c.categoryName FROM products p JOIN category c ON p.categoryID = c.categoryID WHERE productID = $product_id";
+    $sql = "SELECT p.*,c.categoryName FROM products p JOIN category c ON p.categoryID = c.categoryID WHERE p.productID = $product_id";
     $stmt = $pdo->query($sql);
     $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
