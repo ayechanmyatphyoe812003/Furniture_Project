@@ -74,20 +74,22 @@ require_once "../navigation/header.php";
                 <h4>$ <?= $productPrice ?></h4>
             </div>
             <form id="addToCartForm" action="cart_function.php" method="post">
-                <!-- Hidden input fields for product_id and quantity -->
-                <input type="hidden" id="productId" name="product_id" value="<?= $productId ?>">
-                <input type="hidden" id="quantity" name="quantity" value="1">
+                <form id="buyNowForm" action="buy_now.php" method="post">
+                    <!-- Hidden input fields for product_id and quantity -->
+                    <input type="hidden" id="productId" name="product_id" value="<?= $productId ?>">
+                    <input type="hidden" id="quantity" name="quantity" value="1">
 
-                <div class="right3">
-                    <p>Qty: </p>
-                    <button type="button" id="decrementQty">-</button>
-                    <input type="number" id="quantityDisplay" value="1" readonly>
-                    <button type="button" id="incrementQty">+</button>
-                </div>
-                <div class="right4">
-                    <button type="button" id="addToCartBtn">Add to Cart</button>
-                    <button type="submit" id="buyNowBtn" class="btn2">Buy Now</button>
-                </div>
+                    <div class="right3">
+                        <p>Qty: </p>
+                        <button type="button" id="decrementQty">-</button>
+                        <input type="number" id="quantityDisplay" value="1" readonly>
+                        <button type="button" id="incrementQty">+</button>
+                    </div>
+                    <div class="right4">
+                        <button type="button" id="addToCartBtn">Add to Cart</button>
+                        <button type="submit" id="buyNowBtn" class="btn2">Buy Now</button>
+                    </div>
+                </form>
             </form>
 
         </div>
@@ -129,7 +131,7 @@ require_once "../navigation/header.php";
     const addToCartBtn = document.getElementById('addToCartBtn');
     const buyNowBtn = document.getElementById('buyNowBtn');
     const addToCartForm = document.getElementById('addToCartForm');
-
+    const buyNowForm = document.getElementById('buyNowForm');
     incrementBtn.addEventListener('click', () => {
         quantityInput.value = parseInt(quantityInput.value) + 1;
         quantityDisplay.value = quantityInput.value;
@@ -152,6 +154,6 @@ require_once "../navigation/header.php";
 
         document.getElementById('quantity').value = quantityInput.value;
         // Submit the form
-        addToCartForm.submit();
+        buyNowForm.submit();
     });
 </script>
