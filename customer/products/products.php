@@ -9,6 +9,10 @@ require_once "../../database/connect.php";
 $sql = "SELECT * FROM products";
 $stmt = $pdo->query($sql);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$sql2 = "SELECT * FROM category";
+$stmt2 = $pdo->query($sql2);
+$categories = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php
@@ -35,13 +39,12 @@ require_once "../navigation/header.php";
                 <h4><span class="material-symbols-outlined">
                         expand_more
                     </span>Category</h4>
-                <a href="#">hehe </a>
-                <a href="#">hehe</a>
-                <a href="#">hehe</a>
-                <a href="#">hehe </a>
-                <a href="#">hehe </a>
+                <?php foreach ($categories as $category): ?>
+                    <a href="#" class="category-filter"
+                        data-category="<?= $category['categoryID'] ?>"><?= $category['categoryName'] ?></a>
+                <?php endforeach; ?>
             </div>
-            <div class="filter2 filter">
+            <!--  <div class="filter2 filter">
                 <h4><span class="material-symbols-outlined">
                         expand_more
                     </span>Brand</h4>
@@ -50,7 +53,7 @@ require_once "../navigation/header.php";
                 <a href="#">hehe </a>
                 <a href="#">hehe </a>
                 <a href="#">hehe </a>
-            </div>
+            </div> -->
             <div class="price_range">
                 <h4><span class="material-symbols-outlined">
                         expand_more
@@ -60,11 +63,11 @@ require_once "../navigation/header.php";
                         <div class="price-input">
                             <div class="price-field">
                                 <span>From</span>
-                                <input type="number" class="min-input" value="2500">
+                                <input type="number" id="minPrice" class="min-input" value="0">
                             </div>
                             <div class="price-field">
                                 <span>To</span>
-                                <input type="number" class="max-input" value="8500">
+                                <input type="number" id="maxPrice" class="max-input" value="10000">
                             </div>
                         </div>
                         <div class="slider-container">
@@ -75,11 +78,12 @@ require_once "../navigation/header.php";
 
                     <!-- Slider -->
                     <div class="range-input">
-                        <input type="range" class="min-range" min="0" max="10000" value="2500" step="1">
-                        <input type="range" class="max-range" min="0" max="10000" value="8500" step="1">
+                        <input type="range" id="minRange" class="min-range" min="0" max="10000" value="0" step="1">
+                        <input type="range" id="maxRange" class="max-range" min="0" max="10000" value="10000" step="1">
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="products_bottom_right">
             <div class="sorting">
@@ -103,16 +107,21 @@ require_once "../navigation/header.php";
                 </div>
             </div>
 
-            <div class="product_cards">
+            <div class="product_cards" id="productCards">
                 <?php
                 foreach ($products as $product) {
                     $image = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img1'];
-
-                ?>
-                    <a href="./productDetail.php?id=<?= $product['productID'] ?>" class="card">
+                    $category_id = $product['categoryID'];
+                    $sql2 = "SELECT * FROM category WHERE categoryID = $category_id";
+                    $stmt2 = $pdo->query($sql2);
+                    $categories = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+                    $categoryName = $categories[0]['categoryName'];
+                    ?>
+                    <a href="./productDetail.php?id=<?= $product['productID'] ?>" class="card"
+                        data-category="<?= $product['categoryID'] ?>">
                         <div class="product_brand">
                             <h3><?= $product['Product_Brand'] ?></h3>
-                            <p><?= $product['categoryID'] ?></p>
+                            <p><?= $categoryName ?></p>
                         </div>
                         <div class="card_image">
                             <img src="<?= $image ?>" alt="sofa1">
@@ -128,5 +137,53 @@ require_once "../navigation/header.php";
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        // Event listener for category filter links
+        $('.category-filter').click(function (e) {
+            e.preventDefault(); // Prevent default link behavior
+            var categoryID = $(this).data('category');
 
-<?php require_once("../navigation/footer.php"); ?>
+            // AJAX request to fetch products based on category
+            $.ajax({
+                url: 'filter_products_category.php',
+                type: 'GET',
+                data: { categoryID: categoryID },
+                success: function (response) {
+                    // Update product list with fetched products
+                    $('#productCards').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        // Event listener for price range input changes
+        $('#minPrice, #maxPrice, #minRange, #maxRange').change(function () {
+            var minPrice = $('#minPrice').val();
+            var maxPrice = $('#maxPrice').val();
+
+            // AJAX request to fetch products based on price range
+            $.ajax({
+                url: 'fetch_products.php',
+                type: 'GET',
+                data: { minPrice: minPrice, maxPrice: maxPrice },
+                success: function (response) {
+                    // Update product list with fetched products
+                    $('#productCards').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+
+</script>
+
+
+<?php require_once ("../navigation/footer.php"); ?>

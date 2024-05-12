@@ -10,7 +10,16 @@ require_once "../navigation/header.php";
 ?>
 <div class="shopping-cart-container">
   <h2 class="shopping-title"><span>|</span>Shopping Cart</h2>
-  <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) :
+  <?php
+  if (isset($_POST['remove'], $_POST['remove_product_id']) && is_numeric($_POST['remove_product_id'])) {
+    $removeProductId = (int) $_POST['remove_product_id'];
+    if (isset($_SESSION['cart'][$removeProductId])) {
+      unset($_SESSION['cart'][$removeProductId]);
+    }
+  }
+
+
+  if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])):
     $subtotal = 0;
     foreach ($_SESSION['cart'] as $productId => $product) {
       $subtotal += ($product['productPrice'] ?? 0) * ($product['qty'] ?? 0);
@@ -21,7 +30,7 @@ require_once "../navigation/header.php";
     // Calculate the estimated delivery date
     $deliveryDate = new DateTime();
     $deliveryDate->add(new DateInterval('P7D')); // Add 7 days
-  ?>
+    ?>
 
 
     <div class="shopping-cart-boxes">
@@ -33,17 +42,26 @@ require_once "../navigation/header.php";
               <th>Name</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th>Action</th>
             </tr>
-            <?php foreach ($_SESSION['cart'] as $productId => $product) : ?>
+            <?php foreach ($_SESSION['cart'] as $productId => $product): ?>
               <tr>
                 <td>
                   <img src="<?= $product['productImg'] ?? '' ?>" alt="Furniture Image 1" width="50" />
                 </td>
                 <td><?= $product['productName'] ?? 'Unknown' ?></td>
-                <td><?= $product['qty'] ?? '0' ?></td>
+                <td>
+                  <button class="qty-btn" data-action="decrease">-</button>
+                  <span class="qty"><?= $product['qty'] ?></span>
+                  <button class="qty-btn" data-action="increase">+</button>
+                </td>
+
 
                 <td>$<?= (int) ($product['productPrice'] ?? 0) * (int) ($product['qty'] ?? 0) ?></td>
-
+                <form method="post">
+                  <input type="hidden" name="remove_product_id" value="<?= $productId ?>">
+                  <td><button type="submit" name="remove" class="remove-button">Remove</button></td>
+                </form>
 
               </tr>
             <?php endforeach; ?>
@@ -73,18 +91,57 @@ require_once "../navigation/header.php";
         </div>
       </div>
     </div>
-
+    <div class="bottom-links">
+      <a href="/FURNITURE_PROJECT/customer/products/products.php"> <span class="material-symbols-outlined">
+          chevron_left
+        </span>Continue Shopping</a>
+      <a href="shippingInformation.php"> Proceed to CheckOut<span class="material-symbols-outlined">
+          chevron_right
+        </span></a>
+    </div>
+  <?php else: ?>
+    <div class="cart-empty">
+      <p>Cart is empty</p>
+      <a href="/FURNITURE_PROJECT/customer/products/products.php" class="btn-go-shopping">Go Shopping</a>
+    </div>
   <?php endif; ?>
-  <div class="bottom-links">
-    <a href="#"> <span class="material-symbols-outlined">
-        chevron_left
-      </span>Continue Shopping</a>
-    <a href="shippingInformation.php"> Proceed to CheckOut<span class="material-symbols-outlined">
-        chevron_right
-      </span></a>
-  </div>
+
 
 </div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const qtyButtons = document.querySelectorAll('.qty-btn');
+
+    qtyButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const action = this.getAttribute('data-action');
+        const productId = this.closest('tr').getAttribute('data-product-id');
+        const qtyElement = this.parentElement.querySelector('.qty');
+        let qty = parseInt(qtyElement.innerText);
+
+        if (action === 'increase') {
+          qty++;
+        } else if (action === 'decrease' && qty > 1) {
+          qty--;
+        }
+
+        qtyElement.innerText = qty;
+
+        // Update session
+        fetch('update_cart.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `product_id=${productId}&quantity=${qty}`,
+        });
+      });
+    });
+  });
+</script>
+
 </body>
 
 </html>

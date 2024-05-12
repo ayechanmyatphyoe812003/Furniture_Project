@@ -39,6 +39,6 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
         $_SESSION['cart'][$product_id]['qty'] += $quantity;
     }
 
-
+    header("Location: /productDetail.php?id= $product_id");
     exit();
 }

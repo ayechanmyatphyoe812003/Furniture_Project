@@ -103,7 +103,7 @@ require_once "../navigation/header.php";
         <p class="total price">$500.00</p>
       </div>
     </div>
-    <a href="../additional/thank_you.php"><button>CheckOut</button></a>
+    <a href="../ThankYou/thank_you.php"><button>CheckOut</button></a>
   </div>
 </div>
 </body>

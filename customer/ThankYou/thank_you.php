@@ -31,4 +31,4 @@ require_once "../navigation/header.php";
   </div>
 
 </div>
-<?php require_once("../navigation/footer.php"); ?>
+<?php require_once ("../navigation/footer.php"); ?>
