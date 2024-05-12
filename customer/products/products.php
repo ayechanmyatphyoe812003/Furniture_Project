@@ -95,14 +95,10 @@ require_once "../navigation/header.php";
                     </button>
 
                     <div class="dropdown-content">
-                        <a href="#">A to Z</a>
-                        <a href="#">Z to A</a>
-                        <a href="#">Price <span class="material-symbols-outlined">
-                                south
-                            </span> </a>
-                        <a href="#"> Price <span class="material-symbols-outlined">
-                                north
-                            </span></a>
+                        <a href="#" class="sort-by" data-sort="az">A to Z</a>
+                        <a href="#" class="sort-by" data-sort="za">Z to A</a>
+                        <a href="#" class="sort-by" data-sort="lh">Price Low to High</a>
+                        <a href="#" class="sort-by" data-sort="hl">Price High to Low</a>
                     </div>
                 </div>
             </div>
@@ -181,6 +177,30 @@ require_once "../navigation/header.php";
             });
         });
     });
+
+
+    $(document).ready(function () {
+        // Event listener for sorting options
+        $('.sort-by').click(function (e) {
+            e.preventDefault(); // Prevent default link behavior
+            var sortType = $(this).data('sort');
+
+            // AJAX request to fetch products based on sorting type
+            $.ajax({
+                url: 'sort_products.php',
+                type: 'GET',
+                data: { sortType: sortType },
+                success: function (response) {
+                    // Update product list with fetched products
+                    $('#productCards').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    })
+
 
 
 </script>
