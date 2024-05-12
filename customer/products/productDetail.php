@@ -86,7 +86,7 @@ require_once "../navigation/header.php";
                 </div>
                 <div class="right4">
                     <button type="button" id="addToCartBtn">Add to Cart</button>
-                    <button type="submit" class="btn2">Buy Now</button>
+                    <button type="submit" id="buyNowBtn" class="btn2">Buy Now</button>
                 </div>
             </form>
 
@@ -97,7 +97,7 @@ require_once "../navigation/header.php";
             <h3>Related Products</h3>
         </div>
         <div class="product_cards">
-            <?php foreach (range(1, 4) as $i) : ?>
+            <?php foreach (range(1, 4) as $i): ?>
                 <div class="card">
                     <div class="product_brand">
                         <h3><?= $productBrand ?></h3>
@@ -117,7 +117,7 @@ require_once "../navigation/header.php";
 </div>
 </div>
 
-<?php require_once("../navigation/footer.php"); ?>
+<?php require_once ("../navigation/footer.php"); ?>
 
 
 
@@ -127,6 +127,7 @@ require_once "../navigation/header.php";
     const quantityInput = document.getElementById('quantity');
     const quantityDisplay = document.getElementById('quantityDisplay');
     const addToCartBtn = document.getElementById('addToCartBtn');
+    const buyNowBtn = document.getElementById('buyNowBtn');
     const addToCartForm = document.getElementById('addToCartForm');
 
     incrementBtn.addEventListener('click', () => {
@@ -142,7 +143,13 @@ require_once "../navigation/header.php";
     });
 
     addToCartBtn.addEventListener('click', () => {
-        console.log(quantityInput.value);
+
+        document.getElementById('quantity').value = quantityInput.value;
+        // Submit the form
+        addToCartForm.submit();
+    });
+    buyNowBtn.addEventListener('click', () => {
+
         document.getElementById('quantity').value = quantityInput.value;
         // Submit the form
         addToCartForm.submit();
