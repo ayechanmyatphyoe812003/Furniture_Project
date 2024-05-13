@@ -16,11 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST["address"];
     $payment = $_POST["payment"];
 
+
+    // Store form data in session
+    $_SESSION["name"] = $name;
+    $_SESSION["phone"] = $phone;
+    $_SESSION["email"] = $email;
+    $_SESSION["address"] = $address;
+    $_SESSION["payment"] = $payment;
+
+
     // Check payment method and redirect accordingly
     if ($payment === "credit-card") {
-        header("Location: cardDetails.php");
+        header("Location: Furniture_Project/customer/shoppingPages/cardDetails.php");
         exit();
     } elseif ($payment === "cash-on-delivery") {
+
+        
         header("Location: ../ThankYou/thank_you.php");
         exit();
     }

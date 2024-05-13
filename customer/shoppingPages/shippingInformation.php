@@ -22,29 +22,28 @@ require_once "../navigation/header.php";
       <div class="shipping-left-top">
         <h2><span>|</span>Shipping Information</h2>
         <div class="shipping-form">
-          <form action="shipping_form_action.php" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="name" value="<?= $customer['Customer_Name'] ?>" readonly required />
-            </div>
 
-            <div class="form-group">
-              <label for="phone">Phone Number:</label>
-              <input type="tel" id="phone" name="phone" value="<?= $customer['Customer_Phone'] ?>" readonly required />
-            </div>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<?= $customer['Customer_Name'] ?>" readonly required />
+          </div>
 
-            <div class="form-group address">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" value="<?= $customer['Customer_Email'] ?>" readonly
-                required />
-            </div>
+          <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" value="<?= $customer['Customer_Phone'] ?>" readonly required />
+          </div>
+
+          <div class="form-group address">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?= $customer['Customer_Email'] ?>" readonly required />
+          </div>
 
 
-            <div class="form-group address">
-              <label for="address">Address:</label>
-              <input type="text" id="address" name="address" placeholder="Enter your address" required />
-            </div>
-          </form>
+          <div class="form-group address">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required />
+          </div>
+
         </div>
       </div>
       <div class="shipping-left-bottom">
@@ -107,8 +106,8 @@ require_once "../navigation/header.php";
     </div>
 
 
-    <button type="submit" id="payment-button">Proceed to Payment</button>
-    <button type="submit" id="order-button" style="display:none;">Complete Order</button>
+    <input type="submit" id="payment-button">Proceed to Payment</input>
+    <input type="submit" id="order-button" style="display:none;">Complete Order</input>
 
 
   </div>
