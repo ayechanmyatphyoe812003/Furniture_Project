@@ -1,8 +1,9 @@
 <?php
+session_start();
 $title = "Shopping Cart";
 $style = "shippingInformation.css";
 
-session_start();
+
 require_once "../../database/connect.php";
 if (isset($_SESSION['user_id'])) {
   $customerID = $_SESSION['user_id'];
@@ -114,13 +115,13 @@ require_once "../navigation/header.php";
 
 </form>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
     const paymentSelect = document.getElementById('payment');
     const paymentForm = document.getElementById('payment-form');
     const paymentButton = document.getElementById('payment-button');
     const orderButton = document.getElementById('order-button');
 
-    paymentSelect.addEventListener('change', function () {
+    paymentSelect.addEventListener('change', function() {
       if (this.value === 'credit-card') {
         paymentButton.style.display = 'inline-block';
         orderButton.style.display = 'none';
