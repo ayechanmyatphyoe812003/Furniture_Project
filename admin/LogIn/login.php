@@ -67,6 +67,9 @@
 
 <body>
     <div class="container">
+        <?php
+        session_start();
+        ?>
         <h2>Admin Login</h2>
         <form action="login_form_action.php" method="post">
             <div class="form-group">

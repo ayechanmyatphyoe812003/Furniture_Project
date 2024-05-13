@@ -13,7 +13,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Customers Table</title>
+    <title>Orders Table</title>
     <style>
         body {
             background-color: #f4f4f4;

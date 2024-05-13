@@ -74,22 +74,20 @@ require_once "../navigation/header.php";
                 <h4>$ <?= $productPrice ?></h4>
             </div>
             <form id="addToCartForm" action="cart_function.php" method="post">
-                <form id="buyNowForm" action="buy_now.php" method="post">
-                    <!-- Hidden input fields for product_id and quantity -->
-                    <input type="hidden" id="productId" name="product_id" value="<?= $productId ?>">
-                    <input type="hidden" id="quantity" name="quantity" value="1">
+                <!-- Hidden input fields for product_id and quantity -->
+                <input type="hidden" id="productId" name="product_id" value="<?= $productId ?>">
+                <input type="hidden" id="quantity" name="quantity" value="1">
 
-                    <div class="right3">
-                        <p>Qty: </p>
-                        <button type="button" id="decrementQty">-</button>
-                        <input type="number" id="quantityDisplay" value="1" readonly>
-                        <button type="button" id="incrementQty">+</button>
-                    </div>
-                    <div class="right4">
-                        <button type="button" id="addToCartBtn">Add to Cart</button>
-                        <button type="submit" id="buyNowBtn" class="btn2">Buy Now</button>
-                    </div>
-                </form>
+                <div class="right3">
+                    <p>Qty: </p>
+                    <button type="button" id="decrementQty">-</button>
+                    <input type="number" id="quantityDisplay" value="1" readonly>
+                    <button type="button" id="incrementQty">+</button>
+                </div>
+                <div class="right4">
+                    <input type="submit" id="addToCartBtn" name="add-to-cart" value="Add to Cart">
+                    <input type="submit" id="buyNowBtn" class="btn2" name="buy-now" value="Buy Now">
+                </div>
             </form>
 
         </div>
@@ -99,7 +97,7 @@ require_once "../navigation/header.php";
             <h3>Related Products</h3>
         </div>
         <div class="product_cards">
-            <?php foreach (range(1, 4) as $i): ?>
+            <?php foreach (range(1, 4) as $i) : ?>
                 <div class="card">
                     <div class="product_brand">
                         <h3><?= $productBrand ?></h3>
@@ -119,7 +117,7 @@ require_once "../navigation/header.php";
 </div>
 </div>
 
-<?php require_once ("../navigation/footer.php"); ?>
+<?php require_once("../navigation/footer.php"); ?>
 
 
 

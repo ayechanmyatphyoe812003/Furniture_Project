@@ -13,6 +13,18 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+
+    if (!isset($_SESSION['admin_id'])) {
+        echo '<script>
+    window.location.href = "/Furniture_Project/admin/LogIn/login.php"
+    </script>';
+        exit();
+    }
+
+    // Retrieve customer information from the database based on adminID
+    $adminName = $_SESSION['admin_name']; ?>
     <aside>
         <div class="top">
             <h2>NOVA </span></h2>
@@ -41,12 +53,19 @@
                     <h3>Products</h3>
                 </a>
             </div>
-            <a href="/Furniture_Project/admin/LogIn/login.php">
+            <a href="/Furniture_Project/admin/LogIn/logout.php">
                 <span class="material-symbols-outlined">
                     logout
                 </span>
                 <h3>Log Out</h3>
             </a>
+            <a href="#"><span class="material-symbols-outlined">
+                    person
+                </span>
+                <h2><?= $adminName ?></h2>
+            </a>
+
+
         </div>
     </aside>
     <!--------------- END OF SIDE BAR---------------->

@@ -1,6 +1,7 @@
 <?php
 require_once "../../../database/connect.php";
 
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $ID = $_POST['productID'];
     $name = $_POST["name"];

@@ -22,9 +22,9 @@ session_start();
                         expand_more</div>
                 <div class="dropdown-content">
                     <a href="../products/products.php">All Products</a>
-                    <a href="../products/products.php?category=sofa">Sofa Sets</a>
-                    <a href="../products/products.php?category=bedframes">Bed Frames</a>
-                    <a href="../products/products.php?category=matteress">Mattresses</a>
+                    <a href="../products/products.php?category=sofa+set">Sofa Sets</a>
+                    <a href="../products/products.php?category=bed+frame">Bed Frames</a>
+                    <a href="../products/products.php?category=mattress">Mattresses</a>
                     <a href="../products/products.php?category=rugs">Rugs</a>
                 </div>
             </div>
@@ -43,14 +43,13 @@ session_start();
         <!-- Right side of the navigation bar -->
         <div class="navbar-right">
             <!-- Search bar -->
-            <div class="search-bar">
+            <form class="search-bar" method="GET" action="/Furniture_Project/customer/products/products.php">
                 <span class="material-symbols-outlined">
                     search
                 </span>
-                <input type="text" placeholder="Search... ">
-            </div>
-            <!-- Shopping cart icon -->
-            <!-- Shopping cart icon -->
+
+                <input type="text" name="query" placeholder="Search... ">
+            </form>
             <a href="/Furniture_Project/customer/shoppingpages/shoppingCart.php" class="cart-icon">
                 <span class="material-symbols-outlined">
                     shopping_cart
@@ -69,13 +68,14 @@ session_start();
             <span class="close-icon material-symbols-outlined">
                 close
             </span>
-            <div class="search-bar">
+
+            <form class="search-bar" method="GET" action="/Furniture_Project/customer/products/products.php">
                 <span class="material-symbols-outlined">
                     search
                 </span>
 
-                <input type="text" placeholder="Search... ">
-            </div>
+                <input type="text" name="query" placeholder="Search... ">
+            </form>
             <a href="#">Home</a>
             <span>Collection</span>
             <div class="collect">

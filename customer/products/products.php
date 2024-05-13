@@ -1,5 +1,13 @@
 <?php
 
+function exec_sql_all($sql, $params = [])
+{
+    global $pdo;
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 $title = "Products";
 $style = "products.css";
 $script = "script.js";
@@ -13,6 +21,75 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $sql2 = "SELECT * FROM category";
 $stmt2 = $pdo->query($sql2);
 $categories = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+$sql2 = "SELECT Product_Brand as name FROM products GROUP BY Product_Brand";
+$stmt2 = $pdo->query($sql2);
+$brands = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+$filter = [
+    "category" => !empty($_GET["category"]) ? $_GET["category"] : null,
+    "brand" => !empty($_GET["brand"]) ? $_GET["brand"] : null,
+    "min" => !empty($_GET["min"]) ? $_GET["min"] : 0,
+    "max" => !empty($_GET["max"]) ? $_GET["max"] : 10000
+];
+
+$sort = !empty($_GET["sort"]) ? $_GET["sort"] : "az";
+
+$query = isset($_GET["query"]) ? $_GET["query"] : "";
+
+// build query starts
+$sql = "SELECT p.productID, p.Product_Name, Product_Brand, Product_Price, product_img1, categoryName
+          FROM products AS p
+          JOIN category AS c ON p.categoryID=c.categoryID";
+
+foreach ($filter as $i) {
+    if (!empty($i)) {
+        $sql .= " WHERE ";
+        break;
+    }
+}
+
+$condition_arr = [];
+
+if (!empty($filter["category"])) {
+    $condition_arr[] = sprintf("c.categoryName IN ('%s')", $filter["category"]);
+}
+
+if (!empty($filter["brand"])) {
+    $condition_arr[] = sprintf("Product_Brand IN ('%s')", $filter["brand"]);
+}
+
+if (!empty($filter["min"])) {
+    $condition_arr[] = sprintf("Product_Price >= %s", $filter["min"]);
+}
+
+if (!empty($filter["max"])) {
+    $condition_arr[] = sprintf("Product_Price <= %s", $filter["max"]);
+}
+
+$sql .= implode(" AND ", $condition_arr);
+
+$sort_to_sql_map = [
+    "az" => "p.Product_Name ASC",
+    "za" => "p.Product_Name DESC",
+    "lh" => "Product_Price ASC",
+    "hl" => "Product_Price DESC"
+];
+
+$sql .= sprintf(" ORDER BY %s", $sort_to_sql_map[$sort]);
+
+// build query ends
+
+if (empty($query)) {
+    $products = exec_sql_all($sql);
+} else {
+    $products = exec_sql_all(
+        "SELECT productID, Product_Name, category.categoryName, Product_Brand, Product_Price, product_img1
+       FROM products
+       JOIN category ON category.categoryID=products.categoryID
+       WHERE Product_Name LIKE '%$query%'"
+    );
+}
 ?>
 
 <?php
@@ -31,179 +108,32 @@ require_once "../navigation/header.php";
         </div>
 
     </div>
-
     <div class="products_bottom">
         <div class="products_bottom_left">
             <h3>Filterd By</h3>
-            <div class="filter1 filter">
-                <h4><span class="material-symbols-outlined">
-                        expand_more
-                    </span>Category</h4>
-                <?php foreach ($categories as $category): ?>
-                    <a href="#" class="category-filter"
-                        data-category="<?= $category['categoryID'] ?>"><?= $category['categoryName'] ?></a>
-                <?php endforeach; ?>
-            </div>
-            <!--  <div class="filter2 filter">
-                <h4><span class="material-symbols-outlined">
-                        expand_more
-                    </span>Brand</h4>
-                <a href="#">hehe </a>
-                <a href="#">hehe </a>
-                <a href="#">hehe </a>
-                <a href="#">hehe </a>
-                <a href="#">hehe </a>
-            </div> -->
-            <div class="price_range">
-                <h4><span class="material-symbols-outlined">
-                        expand_more
-                    </span>Price Range</h4>
-                <div class="custom-wrapper">
-                    <div class="price-input-container">
-                        <div class="price-input">
-                            <div class="price-field">
-                                <span>From</span>
-                                <input type="number" id="minPrice" class="min-input" value="0">
-                            </div>
-                            <div class="price-field">
-                                <span>To</span>
-                                <input type="number" id="maxPrice" class="max-input" value="10000">
-                            </div>
-                        </div>
-                        <div class="slider-container">
-                            <div class="price-slider">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slider -->
-                    <div class="range-input">
-                        <input type="range" id="minRange" class="min-range" min="0" max="10000" value="0" step="1">
-                        <input type="range" id="maxRange" class="max-range" min="0" max="10000" value="10000" step="1">
-                    </div>
-                </div>
-            </div>
-
+            <?php require_once("./filter.php"); ?>
         </div>
         <div class="products_bottom_right">
-            <div class="sorting">
-                <h5>Sorted By</h5>
-                <div class="dropdown">
-                    <button class="dropbtn">select<span class="material-symbols-outlined">
-                            expand_more
-                        </span>
-                    </button>
-
-                    <div class="dropdown-content">
-                        <a href="#" class="sort-by" data-sort="az">A to Z</a>
-                        <a href="#" class="sort-by" data-sort="za">Z to A</a>
-                        <a href="#" class="sort-by" data-sort="lh">Price Low to High</a>
-                        <a href="#" class="sort-by" data-sort="hl">Price High to Low</a>
-                    </div>
-                </div>
-            </div>
-
+            <?php require_once("./sort.php"); ?>
             <div class="product_cards" id="productCards">
-                <?php
-                foreach ($products as $product) {
-                    $image = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img1'];
-                    $category_id = $product['categoryID'];
-                    $sql2 = "SELECT * FROM category WHERE categoryID = $category_id";
-                    $stmt2 = $pdo->query($sql2);
-                    $categories = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-                    $categoryName = $categories[0]['categoryName'];
-                    ?>
-                    <a href="./productDetail.php?id=<?= $product['productID'] ?>" class="card"
-                        data-category="<?= $product['categoryID'] ?>">
+                <?php foreach ($products as $product) : ?>
+                    <a href="./productDetail.php?id=<?= $product['productID'] ?>" class="card" ?>">
                         <div class="product_brand">
                             <h3><?= $product['Product_Brand'] ?></h3>
-                            <p><?= $categoryName ?></p>
+                            <p><?= $product["categoryName"] ?></p>
                         </div>
                         <div class="card_image">
-                            <img src="<?= $image ?>" alt="sofa1">
+                            <img src="<?= "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img1'] ?>" alt="sofa1">
                         </div>
                         <div class="product_info">
                             <p class="name"><?= $product['Product_Name'] ?></p>
                             <h3 class="price">$<?= $product['Product_Price'] ?></h3>
                         </div>
                     </a>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        // Event listener for category filter links
-        $('.category-filter').click(function (e) {
-            e.preventDefault(); // Prevent default link behavior
-            var categoryID = $(this).data('category');
-
-            // AJAX request to fetch products based on category
-            $.ajax({
-                url: 'filter_products_category.php',
-                type: 'GET',
-                data: { categoryID: categoryID },
-                success: function (response) {
-                    // Update product list with fetched products
-                    $('#productCards').html(response);
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-
-    $(document).ready(function () {
-        // Event listener for price range input changes
-        $('#minPrice, #maxPrice, #minRange, #maxRange').change(function () {
-            var minPrice = $('#minPrice').val();
-            var maxPrice = $('#maxPrice').val();
-
-            // AJAX request to fetch products based on price range
-            $.ajax({
-                url: 'fetch_products.php',
-                type: 'GET',
-                data: { minPrice: minPrice, maxPrice: maxPrice },
-                success: function (response) {
-                    // Update product list with fetched products
-                    $('#productCards').html(response);
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-
-
-    $(document).ready(function () {
-        // Event listener for sorting options
-        $('.sort-by').click(function (e) {
-            e.preventDefault(); // Prevent default link behavior
-            var sortType = $(this).data('sort');
-
-            // AJAX request to fetch products based on sorting type
-            $.ajax({
-                url: 'sort_products.php',
-                type: 'GET',
-                data: { sortType: sortType },
-                success: function (response) {
-                    // Update product list with fetched products
-                    $('#productCards').html(response);
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    })
-
-
-
-</script>
-
-
-<?php require_once ("../navigation/footer.php"); ?>
+<?php require_once("../navigation/footer.php"); ?>

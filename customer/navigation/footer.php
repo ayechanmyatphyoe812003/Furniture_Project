@@ -1,8 +1,8 @@
 <div class="footer-container">
     <div class="footer-left">
-        <a href="#"> T & C</a>
-        <a href="#"> FAQs</a>
-        <a href="#"> Contact Us</a>
+        <a href="/Furniture_Project/customer/Terms/tc.php"> T & C</a>
+        <a href="/Furniture_Project/customer/FAQs/FAQ.php"> FAQs</a>
+        <a href="/Furniture_Project/customer/contactUs/contact_us.php"> Contact Us</a>
     </div>
     <div class="footer-mid">
         <div class="footer-mid-info">

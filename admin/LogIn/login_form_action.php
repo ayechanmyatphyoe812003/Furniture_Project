@@ -15,6 +15,8 @@ empty($_SESSION['admin-user']) ?
     $_SESSION['admin-user'][$name] = ["pw" => $pw];
 
 if ($admin && password_verify($password, $pw)) {
+    $_SESSION['admin_id'] = $admin['adminID'];
+    $_SESSION['admin_name'] = $admin['adminName'];
     header("Location: ../dashboard/index.php");
     exit();
 } else {

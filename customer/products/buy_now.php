@@ -1,9 +1,8 @@
 <?php
 require_once "../../database/connect.php";
 session_start();
-// If the user clicked the add to cart button on the product page we can check for the form data
+
 if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
-    // Set the post variables so we easily identify them, also make sure they are integer
     $product_id = (int) $_POST['product_id'];
     $quantity = (int) $_POST['quantity'];
 
@@ -12,7 +11,6 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
     $sql = "SELECT p.*,c.categoryName FROM products p JOIN category c ON p.categoryID = c.categoryID WHERE p.productID = $product_id";
     $stmt = $pdo->query($sql);
     $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
     $productName = $product[0]['Product_Name'];
     $productBrand = $product[0]['Product_Brand'];
@@ -38,7 +36,4 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
     } else {
         $_SESSION['cart'][$product_id]['qty'] += $quantity;
     }
-
-    header("Location: /Furniture_Project/customer/shoppingPages/shoppingCart.php");
-    exit();
 }
