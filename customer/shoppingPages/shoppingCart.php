@@ -2,7 +2,6 @@
 
 $title = "shopping cart";
 $style = "shoppingCart.css";
-session_start();
 ?>
 
 <?php
@@ -19,7 +18,7 @@ require_once "../navigation/header.php";
   }
 
 
-  if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])):
+  if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) :
     $subtotal = 0;
     foreach ($_SESSION['cart'] as $productId => $product) {
       $subtotal += ($product['productPrice'] ?? 0) * ($product['qty'] ?? 0);
@@ -30,7 +29,7 @@ require_once "../navigation/header.php";
     // Calculate the estimated delivery date
     $deliveryDate = new DateTime();
     $deliveryDate->add(new DateInterval('P7D')); // Add 7 days
-    ?>
+  ?>
 
 
     <div class="shopping-cart-boxes">
@@ -44,7 +43,7 @@ require_once "../navigation/header.php";
               <th>Price</th>
               <th>Action</th>
             </tr>
-            <?php foreach ($_SESSION['cart'] as $productId => $product): ?>
+            <?php foreach ($_SESSION['cart'] as $productId => $product) : ?>
               <tr>
                 <td>
                   <img src="<?= $product['productImg'] ?? '' ?>" alt="Furniture Image 1" width="50" />
@@ -99,7 +98,7 @@ require_once "../navigation/header.php";
           chevron_right
         </span></a>
     </div>
-  <?php else: ?>
+  <?php else : ?>
     <div class="cart-empty">
       <p>Cart is empty</p>
       <a href="/FURNITURE_PROJECT/customer/products/products.php" class="btn-go-shopping">Go Shopping</a>
@@ -111,11 +110,11 @@ require_once "../navigation/header.php";
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
     const qtyButtons = document.querySelectorAll('.qty-btn');
 
-    qtyButtons.forEach(function (button) {
-      button.addEventListener('click', function () {
+    qtyButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
         const action = this.getAttribute('data-action');
         const productId = this.closest('tr').getAttribute('data-product-id');
         const qtyElement = this.parentElement.querySelector('.qty');

@@ -27,11 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check payment method and redirect accordingly
     if ($payment === "credit-card") {
-        header("Location: Furniture_Project/customer/shoppingPages/cardDetails.php");
+        header("Location: cardDetails.php");
         exit();
     } elseif ($payment === "cash-on-delivery") {
 
-        
+
         header("Location: ../ThankYou/thank_you.php");
         exit();
     }

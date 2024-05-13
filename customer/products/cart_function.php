@@ -43,14 +43,11 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
     if (isset($_POST['add-to-cart'])) {
         header("Location: /Furniture_Project/customer/products/productDetail.php?id= $product_id");
         exit();
-    } else if (isset($_POSt['buy-now'])) {
+    } else if (isset($_POST['buy-now'])) {
         header("Location: /Furniture_Project/customer/shoppingPages/shoppingCart.php");
         exit();
     } else {
         header("Location: /Furniture_Project/customer/products/productDetail.php?id= $product_id");
         exit();
     }
-
 }
-
-
