@@ -5,7 +5,6 @@ $sql = "SELECT * FROM products WHERE productID = $productID";
 $stmt = $pdo->query($sql);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
 foreach ($products as $product) {
     $name = $product['Product_Name'];
     $brand = $product['Product_Brand'];
@@ -24,7 +23,6 @@ foreach ($products as $product) {
     $img3 = $product["product_img3"];
     $img4 = $product["product_img4"];
 }
-
 ?>
 
 <!DOCTYPE html>

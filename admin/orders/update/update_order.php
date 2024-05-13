@@ -6,8 +6,8 @@ $stmt = $pdo->query($sql);
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
+
 foreach ($orders as $order) {
-    # code...
 
     $customerID = $order['customerID'];
     $orderDate = $order['order_date'];
