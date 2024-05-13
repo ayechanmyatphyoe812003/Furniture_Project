@@ -51,7 +51,7 @@ require_once "../navigation/header.php";
         <div class="payment-methods">
           <form action="shipping_form_action.php" method="post" enctype="multipart/form-data">
             <label>
-              <input type="radio" name="payment" value="credit-card" required />Credit Card
+              <input type="radio" name="payment" value="credit-card" required checked />Credit Card
             </label>
             <label>
               <input type="radio" name="payment" value="cash-on-delivery" required />
@@ -107,7 +107,7 @@ require_once "../navigation/header.php";
 
 
     <input type="submit" id="payment-button">Proceed to Payment</input>
-    <input type="submit" id="order-button" style="display:none;">Complete Order</input>
+
 
 
   </div>
