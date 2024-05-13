@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: cardDetails.php");
         exit();
     } elseif ($payment === "cash-on-delivery") {
-        $paymentQuery = "INSERT INTO paymentmethod VALUES ($payment)";
+        $paymentQuery = "INSERT INTO paymentmethod VALUES ('$payment')";
         $paymentStmt = $pdo->prepare($paymentQuery);
         $paymentStmt->execute();
 
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $orderDate = date("Y-m-d"); // Assuming MySQL date format
         $totalAmount = 0; // You need to calculate the total amount based on the products in the cart
 
-        $orderQuery = "INSERT INTO orders VALUES ($userid, $address, $orderDate, $totalAmount, $paymentId, 'pending')";
+        $orderQuery = "INSERT INTO orders VALUES ($userid, '$address', $orderDate, $totalAmount, $paymentId, 'pending')";
         $orderStmt = $pdo->prepare($orderQuery);
         $orderStmt->execute();
 
