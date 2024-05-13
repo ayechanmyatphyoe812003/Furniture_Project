@@ -77,6 +77,10 @@ $script = "app.js";
     </div>
     <!-- list thumnail -->
     <div class="thumbnail">
+        <!-- <a href="../products/products.php?category=sofa">Sofa Sets</a>
+        <a href="../products/products.php?category=bedframes">Bed Frames</a>
+        <a href="../products/products.php?category=matteress">Mattresses</a>
+        <a href="../products/products.php?category=rugs">Rugs</a> -->
         <a href="/Furniture_Project/customer/products/products.php">
             <div class="item">
                 <img src="image/img1.jpg">
@@ -90,7 +94,7 @@ $script = "app.js";
                 </div>
             </div>
         </a>
-        <a href="#">
+        <a href="/Furniture_Project/customer/products/products.php?category=sofa">
             <div class="item">
                 <img src="image/img2.jpg">
                 <div class="content">

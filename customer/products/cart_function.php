@@ -3,6 +3,7 @@ require_once "../../database/connect.php";
 session_start();
 
 
+
 if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
     // Set the post variables so we easily identify them, also make sure they are integer
     $product_id = (int) $_POST['product_id'];
