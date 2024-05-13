@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require_once "../../database/connect.php";
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: /Furniture_Project/customer/authentication/logIn/log_in.php");
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: cardDetails.php");
         exit();
     } elseif ($payment === "cash-on-delivery") {
-        $paymentQuery = "INSERT INTO payment (paymentMethods) VALUES (payment)";
+        $paymentQuery = "INSERT INTO paymentmethod VALUES ($payment)";
         $paymentStmt = $pdo->prepare($paymentQuery);
         $paymentStmt->execute();
 
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $orderDate = date("Y-m-d"); // Assuming MySQL date format
         $totalAmount = 0; // You need to calculate the total amount based on the products in the cart
 
-        $orderQuery = "INSERT INTO order (customerID, Address, order_date, total_amount, paymentID, status) VALUES ($userid, $address, $orderDate, $totalAmount, $paymentId, 'pending')";
+        $orderQuery = "INSERT INTO orders VALUES ($userid, $address, $orderDate, $totalAmount, $paymentId, 'pending')";
         $orderStmt = $pdo->prepare($orderQuery);
         $orderStmt->execute();
 
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $productID = $product['productID'];
             $qty = $product['qty'];
             $unitPrice = $product['productPrice'];
-            $orderItemsQuery = "INSERT INTO orderItems (orderID, productID, quantity,unitPrice) VALUES ($orderId, $productID, $qty)";
+            $orderItemsQuery = "INSERT INTO orderitem  VALUES ($orderId, $productID, $qty)";
             $orderItemsStmt = $pdo->prepare($orderItemsQuery);
             $orderItemsStmt->execute();
         }
