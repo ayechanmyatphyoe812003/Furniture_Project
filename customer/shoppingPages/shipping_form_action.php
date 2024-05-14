@@ -37,6 +37,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $qty = $product['qty'];
             $unitPrice = $product['productPrice'];
             $totalAmount += ($unitPrice * $qty);
+            // Fetch current stock
+            $sqlStock = "SELECT stock FROM products WHERE productID = :productId";
+            $stmtStock = $pdo->prepare($sqlStock);
+            $stmtStock->execute(['productId' => $productId]);
+            $currentStock = $stmtStock->fetchColumn();
+            // Update stock
+            $newStock = $currentStock - $qty;
+            $sqlUpdateStock = "UPDATE products SET Product_Stock = :newStock WHERE productID = :productId";
+            $stmtUpdateStock = $pdo->prepare($sqlUpdateStock);
+            $stmtUpdateStock->execute(['newStock' => $newStock, 'productId' => $productId]);
         }
         $orderQuery = "INSERT INTO orders (customerID, Address, total_amount, paymentID, status) VALUES ($userid, '$address', $totalAmount, 2, 'pending')";
         $orderStmt = $pdo->prepare($orderQuery);
