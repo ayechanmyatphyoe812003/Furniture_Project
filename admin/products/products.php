@@ -143,7 +143,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $sql = "SELECT * FROM category WHERE categoryID={$product['categoryID']}";
                         $stmt = $pdo->query($sql);
                         $category = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
+                    ?>
 
                         <tr>
                             <th><?= $product['productID'] ?></th>
@@ -161,15 +161,12 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <span class=" material-symbols-outlined" id="updateButton">
                                         edit_note
                                     </span> </a>
-                                <a href="delete_form.php?ID=<?php echo $product['productID'] ?>" class="delete"><span
-                                        class="material-symbols-outlined">
+                                <a href="delete_form.php?ID=<?php echo $product['productID'] ?>" class="delete"><span class="material-symbols-outlined">
                                         delete
                                     </span></a>
                             </td>
                         </tr>
                     <?php } ?>
-
-
                 </tbody>
             </table>
         </div>

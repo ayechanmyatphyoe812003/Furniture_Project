@@ -85,33 +85,11 @@ require_once "../navigation/header.php";
                     <button type="button" id="incrementQty">+</button>
                 </div>
                 <div class="right4">
-                    <input type="submit" id="addToCartBtn" name="add-to-cart" value="Add to Cart">
+                    <input type="submit" id="addToCartBtn" name="add-to-cart" value="Add to Cart" class="btn1">
                     <input type="submit" id="buyNowBtn" class="btn2" name="buy-now" value="Buy Now">
                 </div>
             </form>
 
-        </div>
-    </div>
-    <div class="detail-bottom">
-        <div class="relate">
-            <h3>Related Products</h3>
-        </div>
-        <div class="product_cards">
-            <?php foreach (range(1, 4) as $i) : ?>
-                <div class="card">
-                    <div class="product_brand">
-                        <h3><?= $productBrand ?></h3>
-                        <p><?= $categoryID ?></p>
-                    </div>
-                    <div class="card_image">
-                        <img src="<?= $productImage1 ?>" alt="<?= $productName ?>">
-                    </div>
-                    <div class="product_info">
-                        <p><?= $productName ?></p>
-                        <h3>$ <?= $productPrice ?></h3>
-                    </div>
-                </div>
-            <?php endforeach; ?>
         </div>
     </div>
 </div>

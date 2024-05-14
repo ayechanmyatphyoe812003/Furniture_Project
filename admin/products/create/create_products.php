@@ -204,6 +204,7 @@ require_once "../../../database/connect.php";
             </div>
             <div class="form-group">
               <label for="category">Category:</label>
+
               <select name="category">
                 <option value="">Select Category</option>
                 <?php

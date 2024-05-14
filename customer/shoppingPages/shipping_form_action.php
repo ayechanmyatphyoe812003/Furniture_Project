@@ -25,22 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["payment"] = $payment;
 
 
-    // Check payment method and redirect accordingly
     if ($payment === "credit-card") {
         header("Location: cardDetails.php");
         exit();
     } elseif ($payment === "cash-on-delivery") {
-        $paymentQuery = "INSERT INTO paymentmethod VALUES ('$payment')";
-        $paymentStmt = $pdo->prepare($paymentQuery);
-        $paymentStmt->execute();
 
-        $paymentId = $pdo->lastInsertId();
 
-        // Insert into order table
-        $orderDate = date("Y-m-d"); // Assuming MySQL date format
         $totalAmount = 0; // You need to calculate the total amount based on the products in the cart
 
-        $orderQuery = "INSERT INTO orders VALUES ($userid, '$address', $orderDate, $totalAmount, $paymentId, 'pending')";
+        $orderQuery = "INSERT INTO orders (customerID, Address, total_amount, paymentID, status) VALUES ($userid, '$address', $totalAmount, $paymentId, 'pending')";
         $orderStmt = $pdo->prepare($orderQuery);
         $orderStmt->execute();
 
@@ -51,7 +44,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $productID = $product['productID'];
             $qty = $product['qty'];
             $unitPrice = $product['productPrice'];
-            $orderItemsQuery = "INSERT INTO orderitem  VALUES ($orderId, $productID, $qty)";
+            $orderItemsQuery = "INSERT INTO orderitem (orderID, productID, quantity,unitPrice) VALUES ($orderId, $productID, $qty,   $unitPrice)";
+            $orderItemsStmt = $pdo->prepare($orderItemsQuery);
+            $orderItemsStmt->execute();
+        }
+
+        header("Location: ../ThankYou/thank_you.php");
+        exit();
+    }
+
+    if (isset($_POST['card-check-out'])) {
+
+
+        $totalAmount = 0; // You need to calculate the total amount based on the products in the cart
+
+        $orderQuery = "INSERT INTO orders (customerID, Address, total_amount, paymentID, status) VALUES ($userid, '$address', $totalAmount, $paymentId, 'pending')";
+        $orderStmt = $pdo->prepare($orderQuery);
+        $orderStmt->execute();
+
+        $orderId = $pdo->lastInsertId();
+
+        // Insert into orderItems table
+        foreach ($_SESSION['cart'] as $product) {
+            $productID = $product['productID'];
+            $qty = $product['qty'];
+            $unitPrice = $product['productPrice'];
+            $orderItemsQuery = "INSERT INTO orderitem (orderID, productID, quantity,unitPrice) VALUES ($orderId, $productID, $qty,   $unitPrice)";
             $orderItemsStmt = $pdo->prepare($orderItemsQuery);
             $orderItemsStmt->execute();
         }

@@ -37,7 +37,7 @@ $script = "app.js";
                 </div>
                 <div class="buttons">
                     <a href="../aboutUs/about_us.php">ABOUT US</a>
-                    <a href="../Products/products.php">EXPLORE US</a>
+                    <a href="/Furniture_Project/customer/products/products.php?category=sofa+set">EXPLORE US</a>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@ $script = "app.js";
                 </div>
                 <div class="buttons">
                     <a href="../aboutUs/about_us.php">ABOUT US</a>
-                    <a href="../Products/products.php">EXPLORE US</a>
+                    <a href="/Furniture_Project/customer/products/products.php?category=Bed+Frame">EXPLORE US</a>
                 </div>
             </div>
         </div>
@@ -70,10 +70,10 @@ $script = "app.js";
                 </div>
                 <div class="buttons">
                     <a href="../aboutUs/about_us.php">ABOUT US</a>
-                    <a href="../Products/products.php">EXPLORE US</a>
+                    <a href="/Furniture_Project/customer/products/products.php?category=rugs">EXPLORE US</a>
                 </div>
             </div>
-        </div>
+        </div>mattress
     </div>
     <!-- list thumnail -->
     <div class="thumbnail">
@@ -94,7 +94,7 @@ $script = "app.js";
                 </div>
             </div>
         </a>
-        <a href="/Furniture_Project/customer/products/products.php?category=sofa">
+        <a href="/Furniture_Project/customer/products/products.php?category=sofa+set">
             <div class="item">
                 <img src="image/img2.jpg">
                 <div class="content">
@@ -107,7 +107,7 @@ $script = "app.js";
                 </div>
             </div>
         </a>
-        <a href="#">
+        <a href="/Furniture_Project/customer/products/products.php?category=Bed+Frame">
             <div class="item">
                 <img src="image/img3.jpg">
                 <div class="content">
@@ -115,12 +115,12 @@ $script = "app.js";
                         NOVA Furniture
                     </div>
                     <div class="description">
-                        Bed Frames & Mattresses
+                        Bed Frames
                     </div>
                 </div>
             </div>
         </a>
-        <a href="#">
+        <a href="/Furniture_Project/customer/products/products.php?category=rugs">
             <div class="item">
                 <img src="image/img4.jpg">
                 <div class="content">

@@ -11,7 +11,7 @@ require_once "../../navigation/header.php";
     <div class="log-in-card-content">
         <!-- Login Form -->
         <div class="login-form">
-            <h1>Welcome back</h1>
+            <h2>Welcome back</h2>
             <p>Please log in to your account.</p>
 
             <form action="login_form_action.php" method="POST">

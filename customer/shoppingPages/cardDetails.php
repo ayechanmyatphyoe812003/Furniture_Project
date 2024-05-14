@@ -68,42 +68,40 @@ require_once "../navigation/header.php";
             <th>Quantity</th>
             <th>Price</th>
           </tr>
-          <tr>
-            <td>
-              <img src="path_to_image1.jpg" alt="Chair" width="50" />
-            <td>Item 1</td>
-            </td>
-            <td>2</td>
-            <td>$300.00</td>
-          </tr>
-          <tr>
-            <td>
-              <img src="path_to_image2.jpg" alt="Table" width="50" />
-            </td>
-            <td>Item 2</td>
-            <td>1</td>
-            <td>$150.00</td>
-          </tr>
-          <tr>
-            <td>
-              <img src="path_to_image2.jpg" alt="Stand" width="50" />
-            </td>
-            <td>Item 3</td>
-            <td>1</td>
-            <td>$150.00</td>
-          </tr>
+          <?php
+          if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as $productId => $product) {
+              echo "<tr>";
+              echo "<td><img src='{$product['productImg']}' alt='{$product['productName']}' width='50'></td>";
+              echo "<td>{$product['productName']}</td>";
+              echo "<td>{$product['qty']}</td>";
+              echo "<td>\${$product['productPrice']}</td>";
+              echo "</tr>";
+            }
+          }
+          ?>
         </table>
       </div>
       <div class="summary">
+        <?php
+        $subtotal = 0;
+        foreach ($_SESSION['cart'] as $productId => $product) {
+          $subtotal += $product['productPrice'] * $product['qty'];
+        }
+        $shippingFee = 50.00; // Assuming a fixed shipping fee
+        $totalPrice = $subtotal + $shippingFee;
+        ?>
         <p>SUBTOTAL: </p>
-        <p class="price">$450.00</p>
+        <p class="price">$<?= number_format($subtotal, 2) ?></p>
         <p>SHIPPING FEE:</p>
-        <p class="price">$50.00</p>
+        <p class="price">$<?= number_format($shippingFee, 2) ?></p>
         <p class="total">TOTAL PRICE: </p>
-        <p class="total price">$500.00</p>
+        <p class="total price">$<?= number_format($totalPrice, 2) ?></p>
       </div>
     </div>
-    <a href="../ThankYou/thank_you.php"><button>CheckOut</button></a>
+    <form id="payment-form" action="shipping_form_action.php" method="post" enctype="multipart/form-data">
+      <input type="submit" id="card-check-out" name="card-check-out" value="Check Out">
+    </form>
   </div>
 </div>
 </body>

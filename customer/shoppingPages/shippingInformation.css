@@ -43,6 +43,7 @@
 .shipping-information-container .shipping-left-top .form-group input,
 .shipping-information-container .shipping-left-top .form-group label {
   width: 100%;
+  margin: 5px 10px;
 }
 
 .shipping-information-container .shipping-left-top .form-group label {
@@ -103,6 +104,8 @@
 }
 .shipping-information-container .shipping-right .order-summary .shopping-cart {
   padding: 15px;
+  height: 250px;
+  overflow-x: hidden;
 }
 
 .shipping-information-container
@@ -135,6 +138,7 @@
   border-bottom: 1px solid #ccc;
 }
 .shipping-information-container .shipping-right .order-summary .summary {
+  margin-top: 10px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 0.7fr;
@@ -151,7 +155,7 @@
 .shipping-information-container .shipping-right .order-summary .summary .price {
   text-align: center;
 }
-.shipping-information-container .shipping-right a {
+.shipping-information-container .shipping-right input[type="submit"] {
   width: 100%;
   height: 100%;
   background-color: rgb(0, 0, 0);
@@ -164,7 +168,7 @@
   padding: 10px;
   border-radius: 3px;
 }
-.shipping-information-container .shipping-right a:hover {
+.shipping-information-container .shipping-right input[type="submit"]:hover {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
 }

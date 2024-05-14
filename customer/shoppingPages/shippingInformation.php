@@ -104,12 +104,8 @@ require_once "../navigation/header.php";
           <p class="total price">$<?= number_format($totalPrice, 2) ?></p>
         </div>
       </div>
+      <input type="submit" id="payment-button" name="payment-button" value="Proceed to Payement">
     </div>
-
-
-    <input type="submit" id="payment-button">Proceed to Payment</input>
-
-
 
   </div>
 

@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  echo '<script>
+    window.location.href = "/Furniture_Project/customer/authentication/logIn/log_in.php"
+    </script>';
+  exit();
+}
 $title = "User Profile";
 $style = "profile.css";
 $script = "";
@@ -6,15 +13,17 @@ $script = "";
 require_once "../../database/connect.php";
 ?>
 <?php
-session_start();
-
+require_once "../navigation/header.php";
+?>
+<?php
+// session_start();
 if (!isset($_SESSION['user_id'])) {
   echo '<script>
     window.location.href = "/Furniture_Project/customer/authentication/logIn/log_in.php"
     </script>';
   exit();
-}
-
+} ?>
+<?php
 // Retrieve customer information from the database based on customerID
 $customerID = $_SESSION['user_id'];
 
@@ -38,9 +47,7 @@ $customerPhone = $customer['Customer_Phone'];
 
 ?>
 
-<?php
-require_once "../navigation/header.php";
-?>
+
 <div class="user-profile-container">
 
   <!-- Main content area -->
@@ -66,6 +73,7 @@ require_once "../navigation/header.php";
         <button type="button" id="editButton">Edit Profile</button>
         <button type="submit" id="updateButton" style="display: none;">Update Information</button>
         <a href="changePassword.php">Change Password</a>
+        <a href="logOut.php">Log Out</a>
       </form>
     </div>
   </div>

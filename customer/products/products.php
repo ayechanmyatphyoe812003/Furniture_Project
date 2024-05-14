@@ -117,7 +117,7 @@ require_once "../navigation/header.php";
             <?php require_once("./sort.php"); ?>
             <div class="product_cards" id="productCards">
                 <?php foreach ($products as $product) : ?>
-                    <a href="./productDetail.php?id=<?= $product['productID'] ?>" class="card" ?>">
+                    <a href="./productDetail.php?id=<?= $product['productID'] ?>" class="card" ?>
                         <div class="product_brand">
                             <h3><?= $product['Product_Brand'] ?></h3>
                             <p><?= $product["categoryName"] ?></p>

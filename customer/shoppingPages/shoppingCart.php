@@ -39,9 +39,9 @@ require_once "../navigation/header.php";
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Quantity</th>
+              <th>Qty</th>
               <th>Price</th>
-              <th>Action</th>
+              <th></th>
             </tr>
             <?php foreach ($_SESSION['cart'] as $productId => $product) : ?>
               <tr>
@@ -49,17 +49,16 @@ require_once "../navigation/header.php";
                   <img src="<?= $product['productImg'] ?? '' ?>" alt="Furniture Image 1" width="50" />
                 </td>
                 <td><?= $product['productName'] ?? 'Unknown' ?></td>
-                <td>
-                  <button class="qty-btn" data-action="decrease">-</button>
-                  <span class="qty"><?= $product['qty'] ?></span>
-                  <button class="qty-btn" data-action="increase">+</button>
+                <td><?= $product['qty'] ?></span>
                 </td>
 
 
                 <td>$<?= (int) ($product['productPrice'] ?? 0) * (int) ($product['qty'] ?? 0) ?></td>
                 <form method="post">
                   <input type="hidden" name="remove_product_id" value="<?= $productId ?>">
-                  <td><button type="submit" name="remove" class="remove-button">Remove</button></td>
+                  <td><button type="submit" name="remove" class="remove-button"><span class="material-symbols-outlined">
+                        close
+                      </span></button></td>
                 </form>
 
               </tr>

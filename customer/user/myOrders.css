@@ -71,3 +71,7 @@
 .total h2 {
   margin-top: 10px;
 }
+
+table td img {
+  width: 70px;
+}

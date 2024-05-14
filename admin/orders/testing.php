@@ -12,6 +12,14 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <head>
     <style>
+        .customer-main-container {
+            display: grid;
+            width: 96%;
+            height: 100vh;
+            gap: 1.8rem;
+            grid-template-columns: 14rem auto;
+        }
+
         /*-----------order history user profile--------------------*/
         .main-profile-content {
             padding-top: 50px;
@@ -86,52 +94,72 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .total h2 {
             margin-top: 10px;
         }
+
+        table td img {
+            width: 70px;
+        }
     </style>
 </head>
 
 <body>
-    <!-- Main content area -->
-    <?php
-    $page = "orders";
-    require_once "../dashboard/nav.php";
-    ?>
-    <div class="main-profile-content">
-        <div class="order-history-card">
-            <div class="order-info">
-                <h2>Order ID : 1111 </h2>
-                <span>Order Date : 8/8/8</span>
-                <span>Status : Pending </span>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Items</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="" alt="stand" /></td>
-                        <td>chair</td>
-                        <td>3</td>
-                        <td>$250.00</td>
-                    </tr>
-                    <tr>
-                        <td><img src="" alt="chair" /></td>
-                        <td>bed</td>
-                        <td>1</td>
-                        <td>$150.00</td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                </tbody>
-            </table>
-            <div class="total">
-                <p>Payment Method: </p>
-                <h2>Total Price : $ 10000.00</h2>
-            </div>
+
+    <div class="customer-main-container">
+        <!-- Main content area -->
+        <?php
+        $page = "orders";
+        require_once "../dashboard/nav.php";
+        ?>
+        <div class="main-profile-content">
+
+            <?php foreach ($orders as $order) : ?>
+                <div class="order-history-card">
+                    <div class="order-info">
+                        <h2>Order ID: <?php echo $order['orderID']; ?></h2>
+                        <span>Order Date: <?php echo $order['order_date']; ?></span>
+                        <span>Status: <?php echo $order['status']; ?></span>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Items</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Fetch order items for the current order
+                            $orderItemsQuery =
+                                "SELECT oi.*, p.product_Name as productName, p.product_brand as brand, p.product_img1 as imagePath
+              FROM orderitem AS oi
+              JOIN orders AS o ON o.orderID = oi.orderID
+              JOIN products AS p ON oi.productID = p.productID
+              WHERE oi.orderID = :orderID";
+                            $orderItemsStmt = $pdo->prepare($orderItemsQuery);
+                            $orderItemsStmt->execute(['orderID' => $order['orderID']]);
+                            $orderItems = $orderItemsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($orderItems as $item) : ?>
+                                <tr>
+                                    <td><img src="<?= "../../images/" . $item['productName'] . $item['brand'] . "/" . $item['imagePath'] ?>" /></td>
+                                    <td><?php echo $item['productName']; ?></td>
+                                    <td><?php echo $item['quantity']; ?></td>
+                                    <td>$<?php echo number_format($item['unitPrice'], 2); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+                    <div class="total">
+                        <p>Payment Method: <?php echo $order['payment']; ?></p>
+                        <h2>Total Price: $<?php echo number_format($order['total_amount'], 2); ?></h2>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
+
     </div>
 </body>
 

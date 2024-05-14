@@ -27,7 +27,7 @@
 }
 
 .thank-you-container .thank-you-card p {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-bottom: 5%;
 }
 .thank-you-container .icon {
@@ -38,7 +38,7 @@
   text-decoration: none;
 }
 
-.thank-you-container button {
+.back-to-home a {
   display: flex;
   align-items: center;
   padding: 10px 20px;
@@ -49,9 +49,9 @@
   cursor: pointer;
   text-decoration: none;
   color: black;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
-.thank-you-container button:hover {
+.back-to-home a:hover {
   background-color: #000000;
   color: rgb(255, 255, 255);
 }
@@ -72,3 +72,14 @@
   font-weight: bold;
 }
 /*---------Responsive Design for Thank you-------- */
+@media screen and (max-width: 970px) {
+  .thank-you-container .thank-you-top h1 {
+    font-size: 19px;
+  }
+  .back-to-home a {
+    font-size: 0.9rem;
+  }
+  .thank-you-container p.contact {
+    font-size: 13px;
+  }
+}

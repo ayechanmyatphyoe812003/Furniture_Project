@@ -80,9 +80,9 @@ session_start();
             <span>Collection</span>
             <div class="collect">
                 <a href="../products/products.php">All Products</a>
-                <a href="../products/products.php?category=sofa">Sofa Sets</a>
+                <a href="../products/products.php?category=sofa+set">Sofa Sets</a>
                 <a href="../products/products.php?category=bedframes">Bed Frames</a>
-                <a href="../products/products.php?category=matteress">Mattresses</a>
+                <a href="../products/products.php?category=mattress">Mattresses</a>
                 <a href="../products/products.php?category=rugs">Rugs</a>
             </div>
             <a href="/Furniture_Project/customer/authentication/login/log_in.php">Log In</a>

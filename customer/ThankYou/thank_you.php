@@ -17,11 +17,13 @@ require_once "../navigation/header.php";
       </span>
     </div>
 
-    <p>Your order has been successfully placed</p>
+    <p>Your order has been successfully placed!</p>
 
-    <a href="../landing/landing.php" class="material-symbols-outlined"> arrow_back </span>
-      Back to Home</button>
-    </a>
+    <div class="back-to-home">
+      <a href="../landing/landing.php"> <span class="material-symbols-outlined"> arrow_back </span>
+        Back to Home
+      </a>
+    </div>
 
 
     <p class="contact">
@@ -31,4 +33,4 @@ require_once "../navigation/header.php";
   </div>
 
 </div>
-<?php require_once ("../navigation/footer.php"); ?>
+<?php require_once("../navigation/footer.php"); ?>
