@@ -99,8 +99,14 @@ require_once "../navigation/header.php";
                     <button type="button" id="incrementQty">+</button>
                 </div>
                 <div class="right4">
-                    <input type="submit" id="addToCartBtn" name="add-to-cart" value="Add to Cart" class="btn1">
-                    <input type="submit" id="buyNowBtn" class="btn2" name="buy-now" value="Buy Now">
+                    <?php if ($productStock > 0): ?>
+
+                        <input type="submit" id="addToCartBtn" name="add-to-cart" value="Add to Cart" class="btn1">
+                        <input type="submit" id="buyNowBtn" class="btn2" name="buy-now" value="Buy Now">
+
+                    <?php else: ?>
+                        <p style="color: red;">Out of Stock!</p>
+                    <?php endif; ?>
                 </div>
             </form>
 
@@ -109,7 +115,7 @@ require_once "../navigation/header.php";
 </div>
 </div>
 
-<?php require_once("../navigation/footer.php"); ?>
+<?php require_once ("../navigation/footer.php"); ?>
 
 
 
