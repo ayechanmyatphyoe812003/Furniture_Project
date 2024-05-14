@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     if ($name == "") {
     } else {
-        $sql = "UPDATE products
-SET Product_Name= '$name',Product_Brand = '$brand', categoryID = $category, Product_description = '$description',  Product_Price = '$price', Product_Stock = '$stock', product_img1 = '$img1', product_img2 = '$img2', product_img3 = '$img3', product_img4 = '$img4'
-WHERE productID = '$ID';";
+        $sql = sprintf("UPDATE products
+SET Product_Name= '$name',Product_Brand = '$brand', categoryID = $category, Product_description = '$description',  Product_Price = '$price', Product_Stock = '$stock'%s%s%s%s
+WHERE productID = '$ID';", empty($img1) ? "" : ", product_img1='$img1'", empty($img2) ? "" : ", product_img2='$img2'", empty($img3) ? "" : ", product_img3='$img3'", empty($img4) ? "" : ", product_img4='$img4'");
         try {
             $statement = $pdo->prepare($sql);
             $statement->execute();

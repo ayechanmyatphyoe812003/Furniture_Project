@@ -195,37 +195,36 @@ foreach ($products as $product) {
         ?>
         <div class="create-product-container">
             <h2>Update Furniture Product</h2>
-            <form action="update_form_action.php" method="post" enctype="multipart/form-data">
+            <form action="update_form_action.php" method="POST" enctype="multipart/form-data">
                 <div class="form-container">
                     <div class="left-column">
                         <div class="form-group">
                             <label for="image1" class="upload-container">Upload Product Photo:</label>
-
-                            <input type="file" id="image1" name="image1" accept="image/*" value="" required />
+                            <input type="file" id="image1" name="image1" accept="image/*" value="" <?= empty($img1) ? "required" : "" ?> />
                         </div>
                         <div class="form-group">
                             <label for="image2" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image2" name="image2" accept="image/*" required />
+                            <input type="file" id="image2" name="image2" accept="image/*" <?= empty($img2) ? "required" : "" ?> />
                         </div>
                         <div class="form-group">
                             <label for="image3" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image3" name="image3" accept="image/*" required />
+                            <input type="file" id="image3" name="image3" accept="image/*" <?= empty($img3) ? "required" : "" ?> />
                         </div>
                         <div class="form-group">
                             <label for="image4" class="upload-container">Upload Product Photo:</label>
-                            <input type="file" id="image4" name="image4" accept="image/*" required />
+                            <input type="file" id="image4" name="image4" accept="image/*" <?= empty($img4) ? "required" : "" ?> />
                         </div>
                         <div class="photo-preview1">
-                            <img src="<?= "../../../images/" . $name . $brand . "/" . $img1 ?>" alt="test">
+                            <img src="<?= "../../../images/" . $name . $brand . "/" . $img1 ?>" alt="test" class="img_preview1">
                         </div>
                         <div class="photo-preview2">
-                            <img src="<?= "../../../images/" . $name . $brand . "/" . $img2 ?>" alt="test">
+                            <img src="<?= "../../../images/" . $name . $brand . "/" . $img2 ?>" alt="test" class="img_preview2">
                         </div>
                         <div class="photo-preview3">
-                            <img src="<?= "../../../images/" . $name . $brand . "/" . $img3 ?>" alt="test">
+                            <img src="<?= "../../../images/" . $name . $brand . "/" . $img3 ?>" alt="test" class="img_preview3">
                         </div>
                         <div class="photo-preview4">
-                            <img src="<?= "../../../images/" . $name . $brand . "/" . $img4 ?>" alt="test">
+                            <img src="<?= "../../../images/" . $name . $brand . "/" . $img4 ?>" alt="test" class="img_preview4">
                         </div>
                     </div>
                     <div class="right-column">
@@ -246,7 +245,6 @@ foreach ($products as $product) {
                             <select name="category">
 
                                 <?php
-                                // SQL query to fetch all categories
                                 $sql = "SELECT * FROM category";
                                 $stmt = $pdo->query($sql);
                                 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -279,8 +277,7 @@ foreach ($products as $product) {
         </div>
 
     </div>
-
-
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -8,8 +8,6 @@ if (isset($_SESSION['cart'])) {
         $totalCart += $product['qty'];
     }
 }
-
-
 ?>
 
 <head>
@@ -79,7 +77,7 @@ if (isset($_SESSION['cart'])) {
                 close
             </span>
 
-            <form class="search-bar" method="GET" action="/Furniture_Project/customer/products/products.php">
+            <form class="mobile-search-bar" method="GET" action="/Furniture_Project/customer/products/products.php">
                 <span class="material-symbols-outlined">
                     search
                 </span>

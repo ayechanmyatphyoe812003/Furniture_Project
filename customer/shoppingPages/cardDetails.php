@@ -14,21 +14,21 @@ require_once "../navigation/header.php";
       <div class="cards">
         <div class="card card1">
           <label for="visa">
-            <img src="visaCard.png" alt="visa card" />
+            <img src="img/visaCard.png" value="visa card" />
           </label>
           <input type="radio" id="visa" value="visaCard" name="card" required />
         </div>
 
         <div class="card card2">
           <label for="master">
-            <img src="masterCard.png" alt="master card" />
+            <img src="img/masterCard.png" alt="master card" />
           </label>
           <input type="radio" id="master" name="card" value="masterCard" required />
         </div>
 
         <div class="card card3">
           <label for="american">
-            <img src="americanCard.png" alt="american express" />
+            <img src="img/americanCard.png" alt="american express" />
           </label>
           <input type="radio" id="american" name="card" value="americanExpress" required />
         </div>
@@ -104,6 +104,4 @@ require_once "../navigation/header.php";
     </form>
   </div>
 </div>
-</body>
-
-</html>
+<?php require_once "../navigation/footer.php"; ?>

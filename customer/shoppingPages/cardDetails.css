@@ -27,6 +27,9 @@
 }
 .card-details-container .card-details-left .card-container .cards {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 }
 .card-details-container .card-details-left .card-container .cards .card {
   width: 110px;
@@ -63,17 +66,28 @@
   .form-group {
   display: flex;
   flex-direction: column;
-  padding: 4%;
-  margin-top: 5%;
+  padding: 0px 20px;
+  margin-top: 3%;
 }
 .card-details-container
   .card-details-left
   .card-container
   .card-details-form
   .form-group-inline {
+  width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 10px;
+  align-items: center;
+  margin-bottom: 3%;
+}
+.card-details-container
+  .card-details-left
+  .card-container
+  .card-details-form
+  .form-group-inline
+  .form-group {
+  justify-content: left;
 }
 .card-details-container
   .card-details-left
@@ -82,6 +96,16 @@
   .form-group
   label {
   margin-bottom: 3%;
+}
+.card-details-container
+  .card-details-left
+  .card-container
+  .card-details-form
+  .form-group
+  input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 .card-details-right {
   width: 30%;
@@ -138,19 +162,65 @@
 .card-details-right .order-summary .summary .price {
   text-align: center;
 }
-.card-details-right button {
+.card-details-right input[type="submit"] {
   width: 100%;
   height: 100%;
   background-color: white;
   cursor: pointer;
   font-size: 13px;
   border: 1px solid #000;
+  padding: 10px;
 }
-.card-details-right a {
+.card-details-right input[type="submit"] {
   color: black;
   text-decoration: none;
 }
-.card-details-right button:hover {
+.card-details-right input[type="submit"]:hover {
   background-color: black;
   color: rgb(255, 255, 255);
+}
+@media screen and (max-width: 1100px) {
+  .card-details-container .card-details-left {
+    width: 70%;
+    margin-left: 5%;
+  }
+  .card-details-container .card-details-right {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .card-details-container .card-details-left {
+    width: 70%;
+    margin-left: 5%;
+  }
+  .card-details-right {
+    width: 50%;
+  }
+  .card-details-container .card-details-left .card-container .cards .card {
+    width: 80px;
+    margin-left: 7.5%;
+    margin-top: 5%;
+    position: relative;
+  }
+  .card-details-container .card-details-left .card-container img {
+    width: 70px;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 9%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .card-details-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    align-items: center;
+  }
+  .card-details-container .card-details-left {
+    width: 90%;
+  }
+  .card-details-container .card-details-right {
+    width: 90%;
+  }
 }

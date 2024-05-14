@@ -99,7 +99,7 @@ require_once "../navigation/header.php";
     </div>
   <?php else : ?>
     <div class="cart-empty">
-      <p>Cart is empty</p>
+      <p>Your shopping cart is empty :(</p>
       <a href="/FURNITURE_PROJECT/customer/products/products.php" class="btn-go-shopping">Go Shopping</a>
     </div>
   <?php endif; ?>
@@ -140,6 +140,4 @@ require_once "../navigation/header.php";
   });
 </script>
 
-</body>
-
-</html>
+<?php require_once "../navigation/footer.php"; ?>

@@ -9,18 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $paymentID = $_POST['paymentID'];
     $orderStatus = $_POST['orderStatus'];
 
-    if ($name == "") {
+    if ($ID == "") {
     } else {
-        $sql = "UPDATE `order` SET customerID='$customerID', orderDate='$orderDate', totalAmount='$totalAmount', paymentID='$paymentID', orderStatus='$orderStatus' WHERE ID='$ID'";
+        $sql = "UPDATE `orders` SET customerID='$customerID', order_date='$orderDate', total_amount='$totalAmount', paymentID='$paymentID', status='$orderStatus' WHERE orderID='$ID'";
         try {
             $statement = $pdo->prepare($sql);
             $statement->execute();
-            echo "<script>alert('Customer Updated Successfully');</script>";
-            echo "<script>window.location='../customers.php'</script>";
+            echo "<script>alert('Order Status Updated Successfully');</script>";
+            echo "<script>window.location='../orders.php'</script>";
         } catch (PDOException $error) {
             echo $error->getMessage();
         }
     }
 }
-
-

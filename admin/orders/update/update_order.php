@@ -106,7 +106,7 @@ foreach ($orders as $order) {
         ?>
         <div class="create-product-container">
             <h2>Update Order</h2>
-            <form action="update_form_action.php" method="post" enctype="multipart/form-data">
+            <form action="update_form_actions.php" method="post" enctype="multipart/form-data">
                 <div class="form-container">
                     <div class="form-group">
                         <label for="orderID"> Order ID:</label>

@@ -1,7 +1,10 @@
 <?php
 require_once "../../database/connect.php";
-
-$sql = "SELECT * FROM orders";
+$orderID = $_GET['ID'];
+$sql = "SELECT *, pm.paymentID AS pid, o.paymentID AS id, pm.paymentMethods AS payment 
+FROM orders AS o
+JOIN paymentmethod AS pm ON pm.paymentID = o.paymentID
+WHERE o.orderID = $orderID";
 $stmt = $pdo->query($sql);
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -116,6 +119,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="order-info">
                         <h2>Order ID: <?php echo $order['orderID']; ?></h2>
                         <span>Order Date: <?php echo $order['order_date']; ?></span>
+                        <span>Customer: <?php echo $order['customerID']; ?></span>
                         <span>Status: <?php echo $order['status']; ?></span>
                     </div>
 
