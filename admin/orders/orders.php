@@ -123,6 +123,9 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <td>
                                 <a href="update/update_order.php?ID=<?php echo $order['orderID'] ?>
+                            "><span class="material-symbols-outlined" id="updateButton">eye
+                                    </span> </a>
+                                <a href="update/update_order.php?ID=<?php echo $order['orderID'] ?>
                             "><span class="material-symbols-outlined" id="updateButton">edit_note
                                     </span> </a>
                                 <a href="delete_form.php?ID=<?php echo $order['orderID'] ?>" class="delete"><span class="material-symbols-outlined"> delete
