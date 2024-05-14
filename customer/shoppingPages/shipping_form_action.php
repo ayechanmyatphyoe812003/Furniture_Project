@@ -32,13 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         $totalAmount = 0;
-        foreach ($_SESSION['cart'] as $product) {
+        foreach ($_SESSION['cart'] as $productId => $product) {
 
             $qty = $product['qty'];
             $unitPrice = $product['productPrice'];
             $totalAmount += ($unitPrice * $qty);
             // Fetch current stock
-            $sqlStock = "SELECT stock FROM products WHERE productID = :productId";
+            $sqlStock = "SELECT Product_Stock FROM products WHERE productID = :productId";
             $stmtStock = $pdo->prepare($sqlStock);
             $stmtStock->execute(['productId' => $productId]);
             $currentStock = $stmtStock->fetchColumn();

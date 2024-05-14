@@ -21,8 +21,12 @@ if (isset($_GET['id'])) {
         $productBrand = $product['Product_Brand'];
         $categoryID = $product['categoryID'];
         $productStock = 0;
-        if (!isset($_SESSION['cart'][$product_id])) {
-            $productStock = $_SESSION['cart'][$product_id]['stock'];
+        if (isset($_SESSION['cart'])) {
+            if (!isset($_SESSION['cart'][$productId])) {
+                $productStock = $_SESSION['cart'][$productId]['stock'];
+            } else {
+                $productStock = $product['Product_Stock'];
+            }
         } else {
             $productStock = $product['Product_Stock'];
         }
@@ -38,7 +42,6 @@ if (isset($_GET['id'])) {
         $productImage2 = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img2'];
         $productImage3 = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img3'];
         $productImage4 = "../../images/" . $product['Product_Name'] . $product['Product_Brand'] . "/" . $product['product_img4'];
-
     }
     // Save product details in variables
 }
@@ -106,7 +109,7 @@ require_once "../navigation/header.php";
 </div>
 </div>
 
-<?php require_once ("../navigation/footer.php"); ?>
+<?php require_once("../navigation/footer.php"); ?>
 
 
 
