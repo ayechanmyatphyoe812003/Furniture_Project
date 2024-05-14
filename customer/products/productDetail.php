@@ -99,6 +99,9 @@ require_once "../navigation/header.php";
                     <button type="button" id="incrementQty">+</button>
                 </div>
                 <div class="right4">
+                    <?php if ($productStock == 1): ?>
+                        <p style="color: orange;">Only one item left</p>
+                    <?php endif; ?>
                     <?php if ($productStock > 0): ?>
 
                         <input type="submit" id="addToCartBtn" name="add-to-cart" value="Add to Cart" class="btn1">
