@@ -1,9 +1,12 @@
 <?php
 session_start();
 $totalCart = 0;
-foreach ($_SESSION['cart'] as $productId => $product) {
-    $totalCart += $product['qty'];
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $productId => $product) {
+        $totalCart += $product['qty'];
+    }
 }
+
 
 ?>
 
