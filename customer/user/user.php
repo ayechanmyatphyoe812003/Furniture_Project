@@ -1,11 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-  echo '<script>
-    window.location.href = "/Furniture_Project/customer/authentication/logIn/log_in.php"
-    </script>';
-  exit();
-}
+
 $title = "User Profile";
 $style = "profile.css";
 $script = "";
@@ -14,7 +8,14 @@ require_once "../../database/connect.php";
 ?>
 <?php
 require_once "../navigation/header.php";
+if (!isset($_SESSION['user_id'])) {
+  echo '<script>
+    window.location.href = "/Furniture_Project/customer/authentication/logIn/log_in.php"
+    </script>';
+  exit();
+}
 ?>
+
 <?php
 // session_start();
 if (!isset($_SESSION['user_id'])) {

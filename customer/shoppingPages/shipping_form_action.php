@@ -31,9 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif ($payment === "cash-on-delivery") {
 
 
-        $totalAmount = 0; // You need to calculate the total amount based on the products in the cart
+        $totalAmount = 0;
+        foreach ($_SESSION['cart'] as $product) {
 
-        $orderQuery = "INSERT INTO orders (customerID, Address, total_amount, paymentID, status) VALUES ($userid, '$address', $totalAmount, $paymentId, 'pending')";
+            $qty = $product['qty'];
+            $unitPrice = $product['productPrice'];
+            $totalAmount += ($unitPrice * $qty);
+        }
+        $orderQuery = "INSERT INTO orders (customerID, Address, total_amount, paymentID, status) VALUES ($userid, '$address', $totalAmount, 2, 'pending')";
         $orderStmt = $pdo->prepare($orderQuery);
         $orderStmt->execute();
 
@@ -48,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $orderItemsStmt = $pdo->prepare($orderItemsQuery);
             $orderItemsStmt->execute();
         }
-
+        unset($_SESSION['cart']);
         header("Location: ../ThankYou/thank_you.php");
         exit();
     }
@@ -57,8 +62,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         $totalAmount = 0; // You need to calculate the total amount based on the products in the cart
+        foreach ($_SESSION['cart'] as $product) {
 
-        $orderQuery = "INSERT INTO orders (customerID, Address, total_amount, paymentID, status) VALUES ($userid, '$address', $totalAmount, $paymentId, 'pending')";
+            $qty = $product['qty'];
+            $unitPrice = $product['productPrice'];
+            $totalAmount += ($unitPrice * $qty);
+        }
+        $orderQuery = "INSERT INTO orders (customerID, Address, total_amount, paymentID, status) VALUES ($userid, '$address', $totalAmount, 1, 'pending')";
         $orderStmt = $pdo->prepare($orderQuery);
         $orderStmt->execute();
 
@@ -73,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $orderItemsStmt = $pdo->prepare($orderItemsQuery);
             $orderItemsStmt->execute();
         }
-
+        unset($_SESSION['cart']);
         header("Location: ../ThankYou/thank_you.php");
         exit();
     }

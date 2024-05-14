@@ -1,8 +1,10 @@
 <?php
-session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 $totalCart = 0;
 if (isset($_SESSION['cart'])) {
-    foreach ($_SESSION['cart'] as $productId => $product) {
+    foreach ($_SESSION['cart'] as $productID => $product) {
         $totalCart += $product['qty'];
     }
 }
@@ -13,9 +15,7 @@ if (isset($_SESSION['cart'])) {
 <head>
     <link rel="stylesheet" href="/Furniture_Project/customer/style/main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?= isset($style) ? $style : "" ?>">
     <title><?= $title ?></title>
 </head>
@@ -69,8 +69,7 @@ if (isset($_SESSION['cart'])) {
             </a>
             <!-- Profile icon -->
             <div class="dropdown">
-                <a href="/Furniture_Project/customer/user/user.php" class="collection"><span
-                        class="material-symbols-outlined">
+                <a href="/Furniture_Project/customer/user/user.php" class="collection"><span class="material-symbols-outlined">
                         person</a>
             </div>
         </div>
