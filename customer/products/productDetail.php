@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
         $categoryID = $product['categoryID'];
         $productStock = 0;
         if (isset($_SESSION['cart'])) {
-            if (!isset($_SESSION['cart'][$productId])) {
+            if (isset($_SESSION['cart'][$productId])) {
                 $productStock = $_SESSION['cart'][$productId]['stock'];
             } else {
                 $productStock = $product['Product_Stock'];
@@ -99,15 +99,15 @@ require_once "../navigation/header.php";
                     <button type="button" id="incrementQty">+</button>
                 </div>
                 <div class="right4">
-                    <?php if ($productStock == 1): ?>
+                    <?php if ($productStock == 1) : ?>
                         <p style="color: orange;">Only one item left</p>
                     <?php endif; ?>
-                    <?php if ($productStock > 0): ?>
+                    <?php if ($productStock > 0) : ?>
 
                         <input type="submit" id="addToCartBtn" name="add-to-cart" value="Add to Cart" class="btn1">
                         <input type="submit" id="buyNowBtn" class="btn2" name="buy-now" value="Buy Now">
 
-                    <?php else: ?>
+                    <?php else : ?>
                         <p style="color: red;">Out of Stock!</p>
                     <?php endif; ?>
                 </div>
@@ -118,7 +118,7 @@ require_once "../navigation/header.php";
 </div>
 </div>
 
-<?php require_once ("../navigation/footer.php"); ?>
+<?php require_once("../navigation/footer.php"); ?>
 
 
 
