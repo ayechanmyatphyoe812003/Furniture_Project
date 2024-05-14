@@ -8,7 +8,7 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
     // Set the post variables so we easily identify them, also make sure they are integer
     $product_id = (int) $_POST['product_id'];
     $quantity = (int) $_POST['quantity'];
-
+    $stock_left = (int) $_POST['product_stock'] - $quantity;
 
     // Fetch product details
     $sql = "SELECT p.*,c.categoryName FROM products p JOIN category c ON p.categoryID = c.categoryID WHERE p.productID = $product_id";
@@ -36,6 +36,7 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
             'productCategory' => $productCategory,
             'productImg' => $productImage1,
             'qty' => $quantity,
+            'stock' => $stock_left,
         ];
     } else {
         $_SESSION['cart'][$product_id]['qty'] += $quantity;
