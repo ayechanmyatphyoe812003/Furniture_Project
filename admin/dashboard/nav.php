@@ -30,7 +30,7 @@ session_start();
     $adminName = $_SESSION['admin_name']; ?>
     <aside>
         <div class="top">
-            <h2>NOVA </span></h2>
+            <h2>NOVA .admin.</span></h2>
         </div>
         <div class="close" id="close-btn">
             <span class="material-symbols-outlined"> close </span>

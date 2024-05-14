@@ -104,7 +104,6 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th>Customer Name</th>
             <th>Phone Number</th>
             <th>Email</th>
-            <th>Password</th>
             <th></th>
           </tr>
         </thead>
@@ -122,7 +121,6 @@ $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <td><?= $customer['Customer_Name'] ?></td>
               <td><?= $customer['Customer_Email'] ?></td>
               <td><?= $customer['Customer_Phone'] ?></td>
-              <td><?= $customer['Customer_Password'] ?></td>
               <td>
                 <!-- <a href="update/update_customer.php?ID= -->
 
